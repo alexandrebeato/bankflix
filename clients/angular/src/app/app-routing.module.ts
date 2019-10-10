@@ -12,6 +12,11 @@ const routes: Routes = [
     path: 'board',
     // canActivateChild: [RoutePermissionsAutenticacaoService],
     loadChildren: () => import('./modules/board/board.module').then(m => m.BoardModule)
+  },
+  {
+    path: 'agencia',
+    // canActivateChild: [RoutePermissionsAutenticacaoService],
+    loadChildren: () => import('./modules/agencia/agencia.module').then(m => m.AgenciaModule)
   }
 ];
 
