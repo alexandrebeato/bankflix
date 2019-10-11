@@ -7,6 +7,7 @@ import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { CanActivateAgenciaGuard } from './utils/canActivates/canActivateAgencia.service';
 import { CanActivateClienteGuard } from './utils/canActivates/canActivateCliente.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 registerLocaleData(localePt, 'pt');
 
@@ -16,7 +17,8 @@ registerLocaleData(localePt, 'pt');
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },
