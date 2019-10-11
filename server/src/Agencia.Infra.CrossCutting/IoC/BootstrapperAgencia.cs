@@ -6,7 +6,7 @@ namespace Agencia.Infra.CrossCutting.IoC
 {
     public static class BootstrapperAgencia
     {
-        public static void RegisterServices(IServiceCollection services)
+        public static void RegistrarServicos(IServiceCollection services)
         {
             services.AddScoped<IAgenciaRepository, AgenciaRepository>();
         }

@@ -5,13 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="9.0.0" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Agencia.Domain\Agencia.Domain.csproj" />
+    <ProjectReference Include="..\Agencia.Infra.CrossCutting\Agencia.Infra.CrossCutting.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
-using Bankflix.API.Configurations;
+using Agencia.Infra.CrossCutting.IoC;
+using AutoMapper;
 using Bankflix.API.Mapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,8 +21,9 @@ namespace Bankflix.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddAutoMapperSetup();
+            services.AddAutoMapper();
             AutoMapperConfiguration.RegisterMappings();
+            BootstrapperAgencia.RegistrarServicos(services);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
