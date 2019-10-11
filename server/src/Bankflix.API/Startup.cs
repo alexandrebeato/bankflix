@@ -1,8 +1,14 @@
 using Agencia.Infra.CrossCutting.IoC;
 using AutoMapper;
 using Bankflix.API.Mapper;
+using Bankflix.API.Models;
+using Core.Domain.CommandHandlers;
+using Core.Domain.Interfaces;
+using Core.Domain.Notifications;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,6 +28,11 @@ namespace Bankflix.API
         {
             services.AddControllers();
             services.AddAutoMapper();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IMediatorHandler, MediatorHandler>();
+            services.AddScoped<IUsuario, AspNetUser>();
+            services.AddMediatR(typeof(Startup));
+            services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
             AutoMapperConfiguration.RegisterMappings();
             BootstrapperAgencia.RegistrarServicos(services);
         }
