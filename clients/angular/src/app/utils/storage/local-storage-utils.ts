@@ -6,11 +6,11 @@ export class LocalStorageUtils {
     private static agenciaToken = 'bankflix.agencia.token';
 
     public static obterClienteToken(): string {
-        return localStorage.getItem(this.clienteKey);
+        return localStorage.getItem(this.clienteToken);
     }
 
     public static obterAgenciaToken(): string {
-        return localStorage.getItem(this.agenciaKey);
+        return localStorage.getItem(this.agenciaToken);
     }
 
     public static limparTudo(): void {
