@@ -1,3 +1,3 @@
 <p align="center">
-  <img alt="trivelum logo" src="imagens/logo.png" />
+  <img alt="trivelum logo" src="logo.png" />
 </p>
