@@ -30,7 +30,7 @@ $bankflix-ng-theme: mat-light-theme($bankflix-ng-primary, $bankflix-ng-accent, $
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #ecf0f1 !important; }
 /**
 * Generated theme by Material Theme Generator
 * https://material-theme-generator.travetto.io
@@ -263,4 +263,16 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
 .mat-standard-chip {
   padding: .5em .85em;
   min-height: 2.5em;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right !important;
 }
