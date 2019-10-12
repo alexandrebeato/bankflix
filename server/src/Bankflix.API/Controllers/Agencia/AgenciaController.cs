@@ -4,9 +4,10 @@ using Bankflix.API.Models.Agencia;
 using Core.Domain.Interfaces;
 using Core.Domain.Notifications;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace Bankflix.API.Controllers.Agencia
 {
@@ -24,9 +25,26 @@ namespace Bankflix.API.Controllers.Agencia
         }
 
         [HttpGet]
-        public IEnumerable<AgenciaViewModel> ObterAgencias()
+        public AgenciaViewModel ObterAgencia()
         {
-            return _mapper.Map<IEnumerable<AgenciaViewModel>>(_agenciaRepository.ObterTodos());
+            var agencia = _agenciaRepository.ObterTodos()?.FirstOrDefault();
+            return _mapper.Map<AgenciaViewModel>(agencia ?? throw new ArgumentNullException(nameof(agencia)));
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("login")]
+        public IActionResult Login([FromBody] LoginViewModel loginViewModel)
+        {
+            var agencia = _agenciaRepository.Buscar(a => a.Cnpj == loginViewModel.Cnpj && a.Senha == loginViewModel.SenhaCriptografada).FirstOrDefault();
+
+            if (agencia == null)
+            {
+                NotificarErro("Agencia", "CNPJ/Senha inválidos");
+                return Response(loginViewModel);
+            }
+
+            return Response(_mapper.Map<AgenciaViewModel>(agencia));
         }
     }
 }
