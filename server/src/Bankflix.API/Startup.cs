@@ -1,5 +1,6 @@
 using Agencia.Infra.CrossCutting.IoC;
 using AutoMapper;
+using Bankflix.API.Configurations;
 using Bankflix.API.Mapper;
 using Bankflix.API.Models;
 using Core.Domain.CommandHandlers;
@@ -27,6 +28,7 @@ namespace Bankflix.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.ConfigurarAutenticacao();
             services.AddAutoMapper();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IMediatorHandler, MediatorHandler>();
@@ -40,12 +42,17 @@ namespace Bankflix.API
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
 
             app.UseHttpsRedirection();
             app.UseRouting();
+
+            app.UseCors(c => c
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => endpoints.MapControllers());
         }

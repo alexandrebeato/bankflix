@@ -1,5 +1,6 @@
 ﻿using Agencia.Domain.Agencia.Repository;
 using AutoMapper;
+using Bankflix.API.Configurations;
 using Bankflix.API.Models.Agencia;
 using Core.Domain.Interfaces;
 using Core.Domain.Notifications;
@@ -11,6 +12,7 @@ using System.Linq;
 
 namespace Bankflix.API.Controllers.Agencia
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class AgenciaController : BaseController
@@ -22,6 +24,21 @@ namespace Bankflix.API.Controllers.Agencia
         {
             _agenciaRepository = agenciaRepository ?? throw new ArgumentNullException(nameof(agenciaRepository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("token")]
+        public IActionResult GerarToken()
+        {
+            return Ok(new { token = ConfiguracoesSeguranca.GerarToken(Guid.Parse("e7021fee-e0d0-47e7-8796-215a1dd9248b")) });
+        }
+
+        [HttpGet]
+        [Route("teste")]
+        public string Teste()
+        {
+            return "Works...";
         }
 
         [HttpGet]
