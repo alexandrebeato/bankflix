@@ -6,12 +6,12 @@ namespace Agencia.Domain.Agencia.ValueObjects
     {
         private DadosBancarios() { }
 
-        public long NumeroAgencia { get; private set; }
-        public int DigitoVerificador { get; private set; }
+        public string NumeroAgencia { get; private set; }
+        public string DigitoVerificador { get; private set; }
 
         public static class Factory
         {
-            public static DadosBancarios CriarDadosBancarios(long numeroAgencia, int digitoVerificador)
+            public static DadosBancarios CriarDadosBancarios(string numeroAgencia, string digitoVerificador)
             {
                 return new DadosBancarios
                 {

@@ -28,7 +28,7 @@ namespace Agencia.Domain.Agencia
 
         public static class Factory
         {
-            public static Agencia CriarAgenciaPadrao(Guid id, string razaoSocial, string nomeFantasia, string cnpj, string senha, long numeroAgencia, int digitoVerificador)
+            public static Agencia CriarAgenciaPadrao(Guid id, string razaoSocial, string nomeFantasia, string cnpj, string senha, string numeroAgencia, string digitoVerificador)
             {
                 var dadosBancarios = DadosBancarios.Factory.CriarDadosBancarios(numeroAgencia, digitoVerificador);
 
