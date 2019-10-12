@@ -1,6 +1,7 @@
 ﻿using Agencia.Domain.Agencia.Repository;
 using AutoMapper;
 using Bankflix.API.Configurations;
+using Bankflix.API.Models;
 using Bankflix.API.Models.Agencia;
 using Core.Domain.Interfaces;
 using Core.Domain.Notifications;
@@ -19,29 +20,17 @@ namespace Bankflix.API.Controllers.Agencia
     {
         private readonly IAgenciaRepository _agenciaRepository;
         private readonly IMapper _mapper;
+        private readonly IUsuario _usuario;
 
         public AgenciaController(INotificationHandler<DomainNotification> notifications, IUsuario usuario, IMediatorHandler mediator, IAgenciaRepository agenciaRepository, IMapper mapper) : base(notifications, usuario, mediator)
         {
             _agenciaRepository = agenciaRepository ?? throw new ArgumentNullException(nameof(agenciaRepository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _usuario = usuario;
         }
 
         [HttpGet]
-        [AllowAnonymous]
-        [Route("token")]
-        public IActionResult GerarToken()
-        {
-            return Ok(new { token = ConfiguracoesSeguranca.GerarToken(Guid.Parse("e7021fee-e0d0-47e7-8796-215a1dd9248b")) });
-        }
-
-        [HttpGet]
-        [Route("teste")]
-        public string Teste()
-        {
-            return "Works...";
-        }
-
-        [HttpGet]
+        [Authorize(Policy = "Autenticado")]
         public AgenciaViewModel ObterAgencia()
         {
             var agencia = _agenciaRepository.ObterTodos()?.FirstOrDefault();
@@ -61,7 +50,17 @@ namespace Bankflix.API.Controllers.Agencia
                 return Response(loginViewModel);
             }
 
-            return Response(_mapper.Map<AgenciaViewModel>(agencia));
+            var usuarioViewModel = new UsuarioViewModel
+            {
+                Id = agencia.Id,
+                TipoUsuario = TipoUsuario.Agencia
+            };
+
+            return Response(new
+            {
+                token = ConfiguracoesSeguranca.GerarToken(usuarioViewModel),
+                agencia = _mapper.Map<AgenciaViewModel>(agencia)
+            });
         }
     }
 }
