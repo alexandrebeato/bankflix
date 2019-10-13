@@ -1,4 +1,5 @@
-﻿using Core.Domain.Models;
+﻿using Clientes.Domain.Contas.Validations;
+using Core.Domain.Models;
 using System;
 
 namespace Clientes.Domain.Contas
@@ -25,7 +26,8 @@ namespace Clientes.Domain.Contas
 
         public override bool EstaConsistente()
         {
-            throw new NotImplementedException();
+            ValidationResult = new ContaEstaConsistenteValidation(this).Validate(this);
+            return ValidationResult.IsValid;
         }
 
         public static class Factory
