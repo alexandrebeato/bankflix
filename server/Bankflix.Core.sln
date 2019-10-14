@@ -55,6 +55,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clientes.Infra.Data.Mongo",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clientes.Infra.CrossCutting", "src\Clientes.Infra.CrossCutting\Clientes.Infra.CrossCutting.csproj", "{D7C41294-D881-456C-B98A-FFD297630BF8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{5EC90B94-D028-463F-9B53-27F40BC56592}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movimentacoes.Infra.Data.Mongo", "src\Movimentacoes.Infra.Data.Mongo\Movimentacoes.Infra.Data.Mongo.csproj", "{6B25DD9E-E324-4D87-ACB4-3E3E23A87BA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -113,6 +117,10 @@ Global
 		{D7C41294-D881-456C-B98A-FFD297630BF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7C41294-D881-456C-B98A-FFD297630BF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7C41294-D881-456C-B98A-FFD297630BF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B25DD9E-E324-4D87-ACB4-3E3E23A87BA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B25DD9E-E324-4D87-ACB4-3E3E23A87BA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B25DD9E-E324-4D87-ACB4-3E3E23A87BA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B25DD9E-E324-4D87-ACB4-3E3E23A87BA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -142,6 +150,8 @@ Global
 		{E83033A9-DCF8-46FF-BCCD-04C9E599502E} = {574AF8F4-E3BD-4346-BAFA-36FCF8B83902}
 		{613FA493-1C7A-4729-96E3-1CB94F4ABE12} = {E83033A9-DCF8-46FF-BCCD-04C9E599502E}
 		{D7C41294-D881-456C-B98A-FFD297630BF8} = {E83033A9-DCF8-46FF-BCCD-04C9E599502E}
+		{5EC90B94-D028-463F-9B53-27F40BC56592} = {6A22F809-B696-45F5-B91F-8BC44C112164}
+		{6B25DD9E-E324-4D87-ACB4-3E3E23A87BA0} = {5EC90B94-D028-463F-9B53-27F40BC56592}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2A7DDC0A-0ED8-408B-A464-FB4196D1074F}
