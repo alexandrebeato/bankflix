@@ -13,12 +13,16 @@ import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { DepositosComponent } from './components/depositos/components/depositos.component';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { TransferenciasComponent } from './components/transferencias/components/transferencias.component';
 
 @NgModule({
     declarations: [
         BoardComponent,
         MovimentacoesComponent,
-        DepositosComponent
+        DepositosComponent,
+        TransferenciasComponent
     ],
     imports: [
         CommonModule,
@@ -31,7 +35,9 @@ import { MatInputModule } from '@angular/material/input';
         MatFormFieldModule,
         MatCardModule,
         MatExpansionModule,
-        MatInputModule
+        MatInputModule,
+        MatProgressSpinnerModule,
+        MatProgressBarModule
     ],
     exports: [],
     providers: [],
