@@ -17,13 +17,13 @@ namespace Clientes.Commands.Clientes
             DataHoraCriacao = dataHoraCriacao;
         }
 
-        public Guid Id { get; private set; }
-        public string NomeCompleto { get; private set; }
-        public string Cpf { get; private set; }
-        public DateTime DataNascimento { get; private set; }
-        public string Email { get; private set; }
-        public string Telefone { get; private set; }
-        public string Senha { get; private set; }
-        public DateTime DataHoraCriacao { get; private set; }
+        public Guid Id { get; }
+        public string NomeCompleto { get; }
+        public string Cpf { get; }
+        public DateTime DataNascimento { get; }
+        public string Email { get; }
+        public string Telefone { get; }
+        public string Senha { get; }
+        public DateTime DataHoraCriacao { get; }
     }
 }

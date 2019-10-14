@@ -10,6 +10,6 @@ namespace Clientes.Commands.Clientes
             Id = id;
         }
 
-        public Guid Id { get; private set; }
+        public Guid Id { get; }
     }
 }
