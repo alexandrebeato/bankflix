@@ -7,7 +7,9 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="8.5.0" />
     <PackageReference Include="MediatR" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.0.0" />
     <PackageReference Include="MongoDB.Bson" Version="2.9.2" />
+    <PackageReference Include="MongoDB.Driver" Version="2.9.2" />
     <PackageReference Include="RabbitMQ.Client" Version="5.1.1" />
   </ItemGroup>
 
