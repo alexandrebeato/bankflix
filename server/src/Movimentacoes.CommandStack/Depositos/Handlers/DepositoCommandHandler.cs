@@ -77,7 +77,7 @@ namespace Movimentacoes.CommandStack.Depositos.Handlers
 
             deposito.Efetuar();
             _depositoRepository.Atualizar(deposito);
-            await _mediator.SendCommand(new RegistrarMovimentacaoCommand(Guid.NewGuid(), deposito.Conta.Id, TipoMovimentacao.Entrada, TipoVinculo.Deposito, deposito.Valor, DateTime.UtcNow));
+            await _mediator.SendCommand(new RegistrarMovimentacaoCommand(Guid.NewGuid(), deposito.Conta.Id, request.Id, TipoMovimentacao.Entrada, TipoVinculo.Deposito, deposito.Valor, DateTime.UtcNow));
             return true;
         }
     }

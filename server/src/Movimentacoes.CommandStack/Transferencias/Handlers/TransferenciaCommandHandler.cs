@@ -135,8 +135,8 @@ namespace Movimentacoes.CommandStack.Transferencias.Handlers
 
             transferencia.Efetuar();
             _transferenciaRepository.Atualizar(transferencia);
-            await _mediator.SendCommand(new RegistrarMovimentacaoCommand(Guid.NewGuid(), transferencia.ContaOrigem.Id, TipoMovimentacao.Saida, TipoVinculo.Transferencia, transferencia.Valor, DateTime.UtcNow));
-            await _mediator.SendCommand(new RegistrarMovimentacaoCommand(Guid.NewGuid(), transferencia.ContaDestino.Id, TipoMovimentacao.Entrada, TipoVinculo.Transferencia, transferencia.Valor, DateTime.UtcNow));
+            await _mediator.SendCommand(new RegistrarMovimentacaoCommand(Guid.NewGuid(), transferencia.ContaOrigem.Id, request.Id, TipoMovimentacao.Saida, TipoVinculo.Transferencia, transferencia.Valor, DateTime.UtcNow));
+            await _mediator.SendCommand(new RegistrarMovimentacaoCommand(Guid.NewGuid(), transferencia.ContaDestino.Id, request.Id, TipoMovimentacao.Entrada, TipoVinculo.Transferencia, transferencia.Valor, DateTime.UtcNow));
             return true;
         }
     }

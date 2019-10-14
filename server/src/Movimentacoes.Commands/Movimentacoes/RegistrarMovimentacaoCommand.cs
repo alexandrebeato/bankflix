@@ -6,7 +6,7 @@ namespace Movimentacoes.Commands.Movimentacoes
 {
     public class RegistrarMovimentacaoCommand : Command
     {
-        public RegistrarMovimentacaoCommand(Guid id, Guid contaId, TipoMovimentacao tipoMovimentacao, TipoVinculo tipoVinculo, long valor, DateTime dataHoraCriacao)
+        public RegistrarMovimentacaoCommand(Guid id, Guid contaId, Guid vinculadoId, TipoMovimentacao tipoMovimentacao, TipoVinculo tipoVinculo, long valor, DateTime dataHoraCriacao)
         {
             Id = id;
             ContaId = contaId;
@@ -18,6 +18,7 @@ namespace Movimentacoes.Commands.Movimentacoes
 
         public Guid Id { get; }
         public Guid ContaId { get; }
+        public Guid VinculadoId { get; }
         public TipoMovimentacao TipoMovimentacao { get; }
         public TipoVinculo TipoVinculo { get; }
         public long Valor { get; }
