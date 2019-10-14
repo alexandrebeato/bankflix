@@ -53,6 +53,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{E83033A9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clientes.Infra.Data.Mongo", "src\Clientes.Infra.Data.Mongo\Clientes.Infra.Data.Mongo.csproj", "{613FA493-1C7A-4729-96E3-1CB94F4ABE12}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clientes.Infra.CrossCutting", "src\Clientes.Infra.CrossCutting\Clientes.Infra.CrossCutting.csproj", "{D7C41294-D881-456C-B98A-FFD297630BF8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,10 @@ Global
 		{613FA493-1C7A-4729-96E3-1CB94F4ABE12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{613FA493-1C7A-4729-96E3-1CB94F4ABE12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{613FA493-1C7A-4729-96E3-1CB94F4ABE12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7C41294-D881-456C-B98A-FFD297630BF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7C41294-D881-456C-B98A-FFD297630BF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7C41294-D881-456C-B98A-FFD297630BF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7C41294-D881-456C-B98A-FFD297630BF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -135,6 +141,7 @@ Global
 		{EC5DA0B0-DB6D-445D-8648-CF03F4E3E07B} = {0D4DE196-A1E7-4772-94A1-711A797AB230}
 		{E83033A9-DCF8-46FF-BCCD-04C9E599502E} = {574AF8F4-E3BD-4346-BAFA-36FCF8B83902}
 		{613FA493-1C7A-4729-96E3-1CB94F4ABE12} = {E83033A9-DCF8-46FF-BCCD-04C9E599502E}
+		{D7C41294-D881-456C-B98A-FFD297630BF8} = {E83033A9-DCF8-46FF-BCCD-04C9E599502E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2A7DDC0A-0ED8-408B-A464-FB4196D1074F}

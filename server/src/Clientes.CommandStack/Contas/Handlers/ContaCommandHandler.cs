@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 
 namespace Clientes.CommandStack.Contas.Handlers
 {
-    public class ContasCommandHandlers : CommandHandler, IRequestHandler<CriarContaCommand, bool>,
+    public class ContaCommandHandler : CommandHandler, IRequestHandler<CriarContaCommand, bool>,
                                                          IRequestHandler<AdicionarValorSaldoContaCommand, bool>,
                                                          IRequestHandler<RemoverValorSaldoContaCommand, bool>
     {
         private readonly IContaRepository _contaRepository;
         private readonly IMongoSequenceRepository _mongoSequenceRepository;
 
-        public ContasCommandHandlers(IMediatorHandler mediator, INotificationHandler<DomainNotification> notifications, IContaRepository contaRepository, IMongoSequenceRepository mongoSequenceRepository) : base(mediator, notifications)
+        public ContaCommandHandler(IMediatorHandler mediator, INotificationHandler<DomainNotification> notifications, IContaRepository contaRepository, IMongoSequenceRepository mongoSequenceRepository) : base(mediator, notifications)
         {
             _contaRepository = contaRepository ?? throw new ArgumentNullException(nameof(contaRepository));
             _mongoSequenceRepository = mongoSequenceRepository ?? throw new ArgumentNullException(nameof(mongoSequenceRepository));
