@@ -1,9 +1,10 @@
-﻿using Movimentacoes.Domain.Movimentacoes.Enums;
+﻿using Core.Domain.Commands;
+using Movimentacoes.Domain.Movimentacoes.Enums;
 using System;
 
 namespace Movimentacoes.Commands.Movimentacoes
 {
-    public class RegistrarMovimentacaoCommand
+    public class RegistrarMovimentacaoCommand : Command
     {
         public RegistrarMovimentacaoCommand(Guid id, Guid contaId, TipoMovimentacao tipoMovimentacao, TipoVinculo tipoVinculo, long valor, DateTime dataHoraCriacao)
         {

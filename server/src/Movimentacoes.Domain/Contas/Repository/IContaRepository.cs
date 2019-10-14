@@ -4,7 +4,7 @@ namespace Movimentacoes.Domain.Contas.Repository
 {
     public interface IContaRepository
     {
-        Conta ObterPorNumero(string numero);
+        Conta ObterPorNumeroComDigitoVerificador(string numero, string digitoVerificador);
         Conta ObterPorId(Guid id);
         Conta ObterPorCliente(Guid clienteId);
     }

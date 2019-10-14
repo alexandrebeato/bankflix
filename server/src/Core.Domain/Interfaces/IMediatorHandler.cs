@@ -7,7 +7,7 @@ namespace Core.Domain.Interfaces
 {
     public interface IMediatorHandler
     {
-        Task RaiseEvent<T>(T evento, CancellationToken cancellation = default(CancellationToken)) where T : Event;
-        Task SendCommand<T>(T comando, CancellationToken cancellation = default(CancellationToken)) where T : Command;
+        Task RaiseEvent<T>(T evento, CancellationToken cancellation = default, bool enqueue = false) where T : Event;
+        Task SendCommand<T>(T comando, CancellationToken cancellation = default, bool enqueue = false) where T : Command;
     }
 }

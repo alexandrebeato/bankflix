@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Core.Domain.Commands;
+using System;
 
 namespace Movimentacoes.Commands.Transferencias
 {
-    public class EfetuarTransferenciaCommand
+    public class EfetuarTransferenciaCommand : Command
     {
         public EfetuarTransferenciaCommand(Guid id)
         {

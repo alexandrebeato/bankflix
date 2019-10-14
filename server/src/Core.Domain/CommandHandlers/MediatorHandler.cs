@@ -16,8 +16,15 @@ namespace Core.Domain.CommandHandlers
             _mediator = mediator;
         }
 
-        public Task SendCommand<T>(T comando, CancellationToken cancellation = default) where T : Command => _mediator.Send(comando, cancellation);
+        public Task SendCommand<T>(T comando, CancellationToken cancellation = default, bool enqueue = false) where T : Command
+        {
+            if (enqueue)
+                return _mediator.Send(comando, cancellation); // TODO: Adicionar à fila com circuit break via polly.
 
-        public Task RaiseEvent<T>(T evento, CancellationToken cancellation = default) where T : Event => _mediator.Publish(evento, cancellation);
+            else
+                return _mediator.Send(comando, cancellation);
+        }
+
+        public Task RaiseEvent<T>(T evento, CancellationToken cancellation = default, bool enqueue = false) where T : Event => _mediator.Publish(evento, cancellation);
     }
 }
