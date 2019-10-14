@@ -11,11 +11,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { DepositosComponent } from './components/depositos/components/depositos.component';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
     declarations: [
         BoardComponent,
-        MovimentacoesComponent
+        MovimentacoesComponent,
+        DepositosComponent
     ],
     imports: [
         CommonModule,
@@ -27,7 +30,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
         MatButtonModule,
         MatFormFieldModule,
         MatCardModule,
-        MatExpansionModule
+        MatExpansionModule,
+        MatInputModule
     ],
     exports: [],
     providers: [],
