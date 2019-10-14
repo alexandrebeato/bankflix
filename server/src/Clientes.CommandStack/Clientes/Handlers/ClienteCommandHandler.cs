@@ -72,6 +72,10 @@ namespace Clientes.CommandStack.Clientes.Handlers
                 return Falha();
 
             cliente.Aprovar();
+
+            if (!ValidarCliente(cliente))
+                return Falha();
+
             _clienteRepository.Atualizar(cliente);
             _mediator.RaiseEvent(ClienteAdapter.ToClienteAprovadoEvent(request));
             return Sucesso();
@@ -85,6 +89,10 @@ namespace Clientes.CommandStack.Clientes.Handlers
                 return Falha();
 
             cliente.Recusar();
+
+            if (!ValidarCliente(cliente))
+                return Falha();
+
             _clienteRepository.Atualizar(cliente);
             _mediator.RaiseEvent(ClienteAdapter.ToClienteRecusadoEvent(request));
             return Sucesso();

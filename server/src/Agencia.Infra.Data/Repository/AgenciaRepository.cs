@@ -1,8 +1,8 @@
-﻿using System;
-using System.Linq;
-using Agencia.Domain.Agencia.Repository;
+﻿using Agencia.Domain.Agencia.Repository;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
+using System;
+using System.Linq;
 
 namespace Agencia.Infra.Data.Mongo.Repository
 {
