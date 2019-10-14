@@ -276,3 +276,11 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
 .text-right {
   text-align: right !important;
 }
+
+.text-success {
+  color: #2ecc71 !important;
+}
+
+.text-danger {
+  color: #e74c3c !important;
+}

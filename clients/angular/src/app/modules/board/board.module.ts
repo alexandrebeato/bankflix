@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import { MatCardModule } from '@angular/material/card';
         MatIconModule,
         MatButtonModule,
         MatFormFieldModule,
-        MatCardModule
+        MatCardModule,
+        MatExpansionModule
     ],
     exports: [],
     providers: [],
