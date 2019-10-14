@@ -19,7 +19,7 @@ namespace Clientes.Domain.Contas
         public void RemoverValorSaldo(long valor)
         {
             if (SaldoDisponivel < valor)
-                throw new InvalidOperationException("Saldo disponível menor que o valor solicitado para remoção.");
+                throw new InvalidOperationException("Saldo insuficiente.");
 
             SaldoDisponivel -= valor;
         }
