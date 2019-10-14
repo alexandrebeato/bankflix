@@ -59,6 +59,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{5EC90B94
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movimentacoes.Infra.Data.Mongo", "src\Movimentacoes.Infra.Data.Mongo\Movimentacoes.Infra.Data.Mongo.csproj", "{6B25DD9E-E324-4D87-ACB4-3E3E23A87BA0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movimentacoes.Infra.CrossCutting", "src\Movimentacoes.Infra.CrossCutting\Movimentacoes.Infra.CrossCutting.csproj", "{9B168FCA-DA4F-452B-8CCC-DDF5FAD8191D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +123,10 @@ Global
 		{6B25DD9E-E324-4D87-ACB4-3E3E23A87BA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B25DD9E-E324-4D87-ACB4-3E3E23A87BA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B25DD9E-E324-4D87-ACB4-3E3E23A87BA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B168FCA-DA4F-452B-8CCC-DDF5FAD8191D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B168FCA-DA4F-452B-8CCC-DDF5FAD8191D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B168FCA-DA4F-452B-8CCC-DDF5FAD8191D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B168FCA-DA4F-452B-8CCC-DDF5FAD8191D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -152,6 +158,7 @@ Global
 		{D7C41294-D881-456C-B98A-FFD297630BF8} = {E83033A9-DCF8-46FF-BCCD-04C9E599502E}
 		{5EC90B94-D028-463F-9B53-27F40BC56592} = {6A22F809-B696-45F5-B91F-8BC44C112164}
 		{6B25DD9E-E324-4D87-ACB4-3E3E23A87BA0} = {5EC90B94-D028-463F-9B53-27F40BC56592}
+		{9B168FCA-DA4F-452B-8CCC-DDF5FAD8191D} = {5EC90B94-D028-463F-9B53-27F40BC56592}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2A7DDC0A-0ED8-408B-A464-FB4196D1074F}
