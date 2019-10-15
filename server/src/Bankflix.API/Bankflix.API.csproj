@@ -14,7 +14,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Agencia.Domain\Agencia.Domain.csproj" />
     <ProjectReference Include="..\Agencia.Infra.CrossCutting\Agencia.Infra.CrossCutting.csproj" />
+    <ProjectReference Include="..\Clientes.Commands\Clientes.Commands.csproj" />
     <ProjectReference Include="..\Clientes.Domain\Clientes.Domain.csproj" />
+    <ProjectReference Include="..\Movimentacoes.Commands\Movimentacoes.Commands.csproj" />
     <ProjectReference Include="..\Movimentacoes.Domain\Movimentacoes.Domain.csproj" />
   </ItemGroup>
 

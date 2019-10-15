@@ -1,4 +1,10 @@
 ﻿using AutoMapper;
+using Bankflix.API.Models.Clientes.Clientes;
+using Bankflix.API.Models.Movimentacoes.Depositos;
+using Bankflix.API.Models.Movimentacoes.Transferencias;
+using Clientes.Commands.Clientes;
+using Movimentacoes.Commands.Depositos;
+using Movimentacoes.Commands.Transferencias;
 
 namespace Bankflix.API.Mapper
 {
@@ -6,7 +12,23 @@ namespace Bankflix.API.Mapper
     {
         public ViewModelToDomainMappingProfile()
         {
+            MapearContextoClientes();
+            MapearContextoMovimentacoes();
+        }
 
+        private void MapearContextoClientes()
+        {
+            CreateMap<CadastrarClienteViewModel, CadastrarClienteCommand>()
+                .ConstructUsing(c => new CadastrarClienteCommand(c.Id, c.NomeCompleto, c.Cpf, c.DataNascimento, c.Email, c.Telefone, c.Senha, c.DataHoraCriacao));
+        }
+
+        private void MapearContextoMovimentacoes()
+        {
+            CreateMap<SolicitarDepositoViewModel, SolicitarDepositoCommand>()
+                    .ConstructUsing(d => new SolicitarDepositoCommand(d.Id, d.ClienteId, d.ValorEmCentavos, d.DataHoraCriacao));
+
+            CreateMap<SolicitarTransferenciaViewModel, SolicitarTransferenciaCommand>()
+                    .ConstructUsing(t => new SolicitarTransferenciaCommand(t.Id, t.ClienteOrigemId, t.NumeroContaDestino, t.DigitoVerificadorContaDestino, t.ValorEmCentavos, t.DataHoraCriacao));
         }
     }
 }
