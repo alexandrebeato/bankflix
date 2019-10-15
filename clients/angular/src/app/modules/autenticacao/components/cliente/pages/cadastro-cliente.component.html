@@ -1,1 +1,113 @@
-cadastro-cliente.component.html
+<div class="row align-items-center" style="margin-top: 70px;">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="text-center">
+            <img src="../../../../../../assets/img/logo-purple.png">
+        </div>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title style="font-size: 2em;">Entrar</mat-card-title>
+                <mat-card-subtitle>Acesse sua conta para cuidar de suas finanças.</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <mat-form-field style="width: 100% !important;">
+                            <input matInput placeholder="CPF" mask="000.000.000-00">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <mat-form-field style="width: 100% !important;">
+                            <input matInput placeholder="Digite uma senha" [type]="esconderSenha ? 'password' : 'text'">
+                            <button mat-icon-button matSuffix (click)="esconderSenha = !esconderSenha"
+                                [attr.aria-label]="'Esconder senha'" [attr.aria-pressed]="esconderSenha">
+                                <mat-icon>{{esconderSenha ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-stroked-button color="accent" style="width: 100%;">
+                    <mat-icon>input</mat-icon>
+                    Entrar
+                </button>
+                <br>
+                <br>
+                <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
+            </mat-card-actions>
+        </mat-card>
+        <br><br>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title style="font-size: 2em;">Crie sua conta</mat-card-title>
+                <mat-card-subtitle>É grátis e rápido começar a guardar o seu dinheiro.</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="row">
+                    <div class="col-12">
+                        <mat-form-field style="width: 100% !important;">
+                            <input matInput placeholder="Nome completo">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <mat-form-field style="width: 100% !important;">
+                            <input matInput placeholder="CPF" mask="000.000.000-00">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <mat-form-field style="width: 100% !important;">
+                            <input matInput placeholder="Data de nascimento" [dropSpecialCharacters]="false"
+                                mask="00/00/0000">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <mat-form-field style="width: 100% !important;">
+                            <input matInput type="email" placeholder="E-mail">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <mat-form-field style="width: 100% !important;">
+                            <input matInput placeholder="Telefone" mask="(00) 00000-0000">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <mat-form-field style="width: 100% !important;">
+                            <input matInput placeholder="Digite uma senha" [type]="esconderSenha ? 'password' : 'text'">
+                            <button mat-icon-button matSuffix (click)="esconderSenha = !esconderSenha"
+                                [attr.aria-label]="'Esconder senha'" [attr.aria-pressed]="esconderSenha">
+                                <mat-icon>{{esconderSenha ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <mat-form-field style="width: 100% !important;">
+                            <input matInput placeholder="Confirme sua senha"
+                                [type]="esconderSenha ? 'password' : 'text'">
+                            <button mat-icon-button matSuffix (click)="esconderSenha = !esconderSenha"
+                                [attr.aria-label]="'Esconder senha'" [attr.aria-pressed]="esconderSenha">
+                                <mat-icon>{{esconderSenha ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-stroked-button color="accent" style="width: 100%;">
+                    <mat-icon>input</mat-icon>
+                    Criar conta
+                </button>
+                <br>
+                <br>
+                <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

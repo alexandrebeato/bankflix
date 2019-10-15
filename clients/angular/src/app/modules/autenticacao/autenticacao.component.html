@@ -1,1 +1,17 @@
-<router-outlet></router-outlet>
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span>
+            <a [routerLink]="[ '' ]">
+                <img src="../../../assets/img/logo.png" style="max-height: 40px;padding-top: 10px;" alt="">
+            </a>
+        </span>
+        <span class="toolbar-spacer"></span>
+        <button mat-flat-button color="primary">
+            Área administrativa
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+<br>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

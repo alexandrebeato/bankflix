@@ -5,6 +5,10 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: '../pages/cadastro-cliente.component.html'
 })
 export class CadastroClienteComponent implements OnInit {
+
+    esconderSenha = true;
+    esconderConfirmacaoSenha = true;
+
     constructor() { }
 
     ngOnInit(): void { }
