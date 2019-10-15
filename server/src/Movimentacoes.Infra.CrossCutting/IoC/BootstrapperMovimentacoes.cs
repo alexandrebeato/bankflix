@@ -14,6 +14,8 @@ using Movimentacoes.Domain.Depositos.Repository;
 using Movimentacoes.Domain.Movimentacoes.Repository;
 using Movimentacoes.Domain.Transferencias.Repository;
 using Movimentacoes.Infra.Data.Mongo.Repository;
+using System;
+using System.Collections.Generic;
 
 namespace Movimentacoes.Infra.CrossCutting.IoC
 {
@@ -35,6 +37,12 @@ namespace Movimentacoes.Infra.CrossCutting.IoC
 
             services.AddScoped<INotificationHandler<DepositoSolicitadoEvent>, DepositoEventHandler>();
             services.AddScoped<INotificationHandler<TransferenciaSolicitadaEvent>, TransferenciaEventHandler>();
+        }
+
+        public static IEnumerable<Type> RegistrarComandosFila()
+        {
+            yield return typeof(EfetuarDepositoCommand);
+            yield return typeof(EfetuarTransferenciaCommand);
         }
     }
 }

@@ -9,5 +9,7 @@ namespace Core.Domain.Interfaces
     {
         Task RaiseEvent<T>(T evento, CancellationToken cancellation = default, bool enqueue = false) where T : Event;
         Task SendCommand<T>(T comando, CancellationToken cancellation = default, bool enqueue = false) where T : Command;
+        Task PublicarFila<T>(T comando, CancellationToken cancellation = default);
+        Task SubscreverFilas();
     }
 }

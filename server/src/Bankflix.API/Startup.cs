@@ -39,6 +39,7 @@ namespace Bankflix.API
             });
 
             services.ConfigurarAutenticacao();
+            services.ConfigurarServicosFila();
             services.AddAutoMapper();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IMediatorHandler, MediatorHandler>();
