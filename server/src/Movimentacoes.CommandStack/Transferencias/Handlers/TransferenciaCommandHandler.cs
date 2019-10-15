@@ -25,12 +25,14 @@ namespace Movimentacoes.CommandStack.Transferencias.Handlers
         private readonly ITransferenciaRepository _transferenciaRepository;
         private readonly IContaRepository _contaRepository;
         private readonly IClienteRepository _clienteRepository;
+        private readonly IUsuario _usuario;
 
-        public TransferenciaCommandHandler(IMediatorHandler mediator, INotificationHandler<DomainNotification> notifications, ITransferenciaRepository transferenciaRepository, IContaRepository contaRepository, IClienteRepository clienteRepository) : base(mediator, notifications)
+        public TransferenciaCommandHandler(IMediatorHandler mediator, INotificationHandler<DomainNotification> notifications, ITransferenciaRepository transferenciaRepository, IContaRepository contaRepository, IClienteRepository clienteRepository, IUsuario usuario) : base(mediator, notifications)
         {
             _transferenciaRepository = transferenciaRepository ?? throw new ArgumentNullException(nameof(transferenciaRepository));
             _contaRepository = contaRepository ?? throw new ArgumentNullException(nameof(contaRepository));
             _clienteRepository = clienteRepository ?? throw new ArgumentNullException(nameof(clienteRepository));
+            _usuario = usuario ?? throw new ArgumentNullException(nameof(usuario));
         }
 
         private Cliente ObterClienteExistente(Guid id)
@@ -68,6 +70,12 @@ namespace Movimentacoes.CommandStack.Transferencias.Handlers
 
         public Task<bool> Handle(SolicitarTransferenciaCommand request, CancellationToken cancellationToken)
         {
+            if (request.ClienteOrigemId != _usuario.ObterAutenticadoId())
+            {
+                NotificarErro(nameof(request.ClienteOrigemId), "Não foi possível solicitar a transferência.");
+                return Falha();
+            }
+
             var clienteOrigem = ObterClienteExistente(request.ClienteOrigemId);
 
             if (clienteOrigem == null)

@@ -23,16 +23,24 @@ namespace Movimentacoes.CommandStack.Depositos.Handlers
         private readonly IDepositoRepository _depositoRepository;
         private readonly IContaRepository _contaRepository;
         private readonly IClienteRepository _clienteRepository;
+        private readonly IUsuario _usuario;
 
-        public DepositoCommandHandler(IMediatorHandler mediator, INotificationHandler<DomainNotification> notifications, IDepositoRepository depositoRepository, IContaRepository contaRepository, IClienteRepository clienteRepository) : base(mediator, notifications)
+        public DepositoCommandHandler(IMediatorHandler mediator, INotificationHandler<DomainNotification> notifications, IDepositoRepository depositoRepository, IContaRepository contaRepository, IClienteRepository clienteRepository, IUsuario usuario) : base(mediator, notifications)
         {
             _depositoRepository = depositoRepository ?? throw new ArgumentNullException(nameof(depositoRepository));
             _contaRepository = contaRepository ?? throw new ArgumentNullException(nameof(contaRepository));
             _clienteRepository = clienteRepository ?? throw new ArgumentNullException(nameof(clienteRepository));
+            _usuario = usuario ?? throw new ArgumentNullException(nameof(usuario));
         }
 
         public Task<bool> Handle(SolicitarDepositoCommand request, CancellationToken cancellationToken)
         {
+            if (request.ClienteId != _usuario.ObterAutenticadoId())
+            {
+                NotificarErro(nameof(request.ClienteId), "Não foi possível solicitar o depósito.");
+                return Falha();
+            }
+
             var cliente = _clienteRepository.ObterPorId(request.ClienteId);
 
             if (cliente == null)
