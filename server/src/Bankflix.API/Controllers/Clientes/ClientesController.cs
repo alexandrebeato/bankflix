@@ -42,7 +42,23 @@ namespace Bankflix.API.Controllers.Clientes
                 return Response(cadastrarClienteViewModel);
 
             await _mediatorHandler.SendCommand(_mapper.Map<CadastrarClienteCommand>(cadastrarClienteViewModel));
-            return Response(cadastrarClienteViewModel);
+
+            if (!OperacaoValida())
+                return Response(cadastrarClienteViewModel);
+
+            var cliente = _clienteRepository.ObterPorId(cadastrarClienteViewModel.Id);
+
+            var usuarioViewModel = new UsuarioViewModel
+            {
+                Id = cliente.Id,
+                TipoUsuario = TipoUsuario.Cliente
+            };
+
+            return Response(new
+            {
+                token = ConfiguracoesSeguranca.GerarToken(usuarioViewModel),
+                cliente = _mapper.Map<ClienteViewModel>(cliente)
+            });
         }
 
         [HttpPost]
@@ -53,7 +69,7 @@ namespace Bankflix.API.Controllers.Clientes
             if (!ModelState.IsValid)
                 return Response(loginViewModel);
 
-            var cliente = _clienteRepository.Buscar(c => c.Cpf == loginViewModel.Cpf && c.Senha == loginViewModel.SenhaCriptografada).FirstOrDefault();
+            var cliente = _clienteRepository.Buscar(c => c.Cpf == loginViewModel.Cpf && c.Senha == loginViewModel.SenhaCriptografada && c.Situacao == SituacaoCliente.Aprovado).FirstOrDefault();
 
             if (cliente == null)
             {

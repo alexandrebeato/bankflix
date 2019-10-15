@@ -8,6 +8,8 @@ import localePt from '@angular/common/locales/pt';
 import { CanActivateAgenciaGuard } from './utils/canActivates/canActivateAgencia.service';
 import { CanActivateClienteGuard } from './utils/canActivates/canActivateCliente.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { CustomFormsModule } from 'ngx-custom-validators';
 
 registerLocaleData(localePt, 'pt');
 
@@ -18,7 +20,9 @@ registerLocaleData(localePt, 'pt');
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    CustomFormsModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },

@@ -13,8 +13,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDividerModule } from '@angular/material/divider';
-
-export let options: Partial<IConfig> | (() => Partial<IConfig>);
+import { ClientesService } from './services/clientes.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
     declarations: [
@@ -31,12 +32,16 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
         MatFormFieldModule,
         MatInputModule,
         MatDatepickerModule,
-        NgxMaskModule.forRoot(options),
+        NgxMaskModule.forRoot(),
         MatProgressBarModule,
-        MatDividerModule
+        MatDividerModule,
+        ReactiveFormsModule,
+        MatSnackBarModule
     ],
     exports: [],
-    providers: [],
+    providers: [
+        ClientesService
+    ],
 })
 
 export class AutenticacaoModule { }
