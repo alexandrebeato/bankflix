@@ -39,6 +39,7 @@ namespace Bankflix.API.Controllers.Movimentacoes
             if (!ModelState.IsValid)
                 return Response(solicitarTransferenciaViewModel);
 
+            solicitarTransferenciaViewModel.ClienteOrigemId = _usuario.ObterAutenticadoId();
             await _mediatorHandler.SendCommand(_mapper.Map<SolicitarTransferenciaCommand>(solicitarTransferenciaViewModel));
             return Response(solicitarTransferenciaViewModel);
         }

@@ -39,6 +39,7 @@ namespace Bankflix.API.Controllers.Movimentacoes
             if (!ModelState.IsValid)
                 return Response(solicitarDepositoViewModel);
 
+            solicitarDepositoViewModel.ClienteId = _usuario.ObterAutenticadoId();
             await _mediatorHandler.SendCommand(_mapper.Map<SolicitarDepositoCommand>(solicitarDepositoViewModel));
             return Response(solicitarDepositoViewModel);
         }
