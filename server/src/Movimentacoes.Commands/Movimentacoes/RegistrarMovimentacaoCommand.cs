@@ -10,6 +10,7 @@ namespace Movimentacoes.Commands.Movimentacoes
         {
             Id = id;
             ContaId = contaId;
+            VinculadoId = vinculadoId;
             TipoMovimentacao = tipoMovimentacao;
             TipoVinculo = tipoVinculo;
             Valor = valor;

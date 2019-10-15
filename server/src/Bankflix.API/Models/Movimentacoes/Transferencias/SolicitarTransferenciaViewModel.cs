@@ -14,7 +14,6 @@ namespace Bankflix.API.Models.Movimentacoes.Transferencias
         [Key]
         public Guid Id { get; set; }
 
-
         public Guid ClienteOrigemId { get; set; }
 
         [Required(ErrorMessage = "É obrigatório informar o número da conta de destino.")]

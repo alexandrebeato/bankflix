@@ -26,7 +26,7 @@ namespace Clientes.Domain.Clientes.Validations
 
             RuleFor(c => c)
                 .IsValid(new ClienteDevePossuirEmailUnicoSpecification(_entidade, _clienteRepository))
-                .WithMessage("CPF já em utilização.");
+                .WithMessage("E-mail já em utilização.");
         }
     }
 }

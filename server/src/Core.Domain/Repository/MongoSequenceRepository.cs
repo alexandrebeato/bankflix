@@ -25,9 +25,16 @@ namespace Core.Domain.Repository
 
         public long ObterProximoValor(string nomeSequence)
         {
-            var filter = Builders<MongoSequence>.Filter.Eq(a => a.Nome, nomeSequence);
-            var update = Builders<MongoSequence>.Update.Inc(a => a.Valor, 1);
-            var sequence = _mongoCollection.FindOneAndUpdate(filter, update);
+            var sequence = _mongoCollection.Find(s => s.Nome == nomeSequence).FirstOrDefault();
+
+            if (sequence == null)
+            {
+                _mongoCollection.InsertOne(new MongoSequence { Nome = nomeSequence, Valor = 1 });
+                return 1;
+            }
+
+            sequence.Valor++;
+            _mongoCollection.FindOneAndReplace(s => s._Id == sequence._Id, sequence);
             return sequence.Valor;
         }
     }

@@ -2,7 +2,7 @@
 {
     public class DadosBancariosViewModel
     {
-        public long NumeroAgencia { get; set; }
-        public int DigitoVerificador { get; set; }
+        public string NumeroAgencia { get; set; }
+        public string DigitoVerificador { get; set; }
     }
 }
