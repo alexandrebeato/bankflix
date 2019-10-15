@@ -5,6 +5,7 @@ using Bankflix.API.Models.Movimentacoes.Transferencias;
 using Clientes.Commands.Clientes;
 using Movimentacoes.Commands.Depositos;
 using Movimentacoes.Commands.Transferencias;
+using System;
 
 namespace Bankflix.API.Mapper
 {
@@ -20,6 +21,12 @@ namespace Bankflix.API.Mapper
         {
             CreateMap<CadastrarClienteViewModel, CadastrarClienteCommand>()
                 .ConstructUsing(c => new CadastrarClienteCommand(c.Id, c.NomeCompleto, c.Cpf, c.DataNascimento, c.Email, c.Telefone, c.Senha, c.DataHoraCriacao));
+
+            CreateMap<Guid, AprovarClienteCommand>()
+                .ConstructUsing(id => new AprovarClienteCommand(id));
+
+            CreateMap<Guid, RecusarClienteCommand>()
+                .ConstructUsing(id => new RecusarClienteCommand(id));
         }
 
         private void MapearContextoMovimentacoes()

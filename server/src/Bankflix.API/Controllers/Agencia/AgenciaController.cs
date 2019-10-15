@@ -20,13 +20,11 @@ namespace Bankflix.API.Controllers.Agencia
     {
         private readonly IAgenciaRepository _agenciaRepository;
         private readonly IMapper _mapper;
-        private readonly IUsuario _usuario;
 
         public AgenciaController(INotificationHandler<DomainNotification> notifications, IUsuario usuario, IMediatorHandler mediator, IAgenciaRepository agenciaRepository, IMapper mapper) : base(notifications, usuario, mediator)
         {
             _agenciaRepository = agenciaRepository ?? throw new ArgumentNullException(nameof(agenciaRepository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-            _usuario = usuario;
         }
 
         [HttpGet]
@@ -42,6 +40,9 @@ namespace Bankflix.API.Controllers.Agencia
         [Route("login")]
         public IActionResult Login([FromBody] LoginViewModel loginViewModel)
         {
+            if (!ModelState.IsValid)
+                return Response(loginViewModel);
+
             var agencia = _agenciaRepository.Buscar(a => a.Cnpj == loginViewModel.Cnpj && a.Senha == loginViewModel.SenhaCriptografada).FirstOrDefault();
 
             if (agencia == null)

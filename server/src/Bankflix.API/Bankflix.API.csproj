@@ -16,8 +16,10 @@
     <ProjectReference Include="..\Agencia.Infra.CrossCutting\Agencia.Infra.CrossCutting.csproj" />
     <ProjectReference Include="..\Clientes.Commands\Clientes.Commands.csproj" />
     <ProjectReference Include="..\Clientes.Domain\Clientes.Domain.csproj" />
+    <ProjectReference Include="..\Clientes.Infra.CrossCutting\Clientes.Infra.CrossCutting.csproj" />
     <ProjectReference Include="..\Movimentacoes.Commands\Movimentacoes.Commands.csproj" />
     <ProjectReference Include="..\Movimentacoes.Domain\Movimentacoes.Domain.csproj" />
+    <ProjectReference Include="..\Movimentacoes.Infra.CrossCutting\Movimentacoes.Infra.CrossCutting.csproj" />
   </ItemGroup>
 
 </Project>

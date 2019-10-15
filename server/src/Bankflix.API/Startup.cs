@@ -3,6 +3,7 @@ using AutoMapper;
 using Bankflix.API.Configurations;
 using Bankflix.API.Mapper;
 using Bankflix.API.Models;
+using Clientes.Infra.CrossCutting.IoC;
 using Core.Domain.CommandHandlers;
 using Core.Domain.Interfaces;
 using Core.Domain.Notifications;
@@ -11,9 +12,11 @@ using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Movimentacoes.Infra.CrossCutting.IoC;
 
 namespace Bankflix.API
 {
@@ -29,6 +32,12 @@ namespace Bankflix.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
+
             services.ConfigurarAutenticacao();
             services.AddAutoMapper();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -39,6 +48,8 @@ namespace Bankflix.API
             services.AddScoped<IMongoSequenceRepository, MongoSequenceRepository>();
             AutoMapperConfiguration.RegisterMappings();
             BootstrapperAgencia.RegistrarServicos(services);
+            BootstrapperClientes.RegistrarServicos(services);
+            BootstrapperMovimentacoes.RegistrarServicos(services);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

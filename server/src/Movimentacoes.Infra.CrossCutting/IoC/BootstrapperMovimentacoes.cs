@@ -19,7 +19,7 @@ namespace Movimentacoes.Infra.CrossCutting.IoC
 {
     public class BootstrapperMovimentacoes
     {
-        public static void ConfigurarServicos(IServiceCollection services)
+        public static void RegistrarServicos(IServiceCollection services)
         {
             services.AddScoped<IDepositoRepository, DepositoRepository>();
             services.AddScoped<ITransferenciaRepository, TransferenciaRepository>();
