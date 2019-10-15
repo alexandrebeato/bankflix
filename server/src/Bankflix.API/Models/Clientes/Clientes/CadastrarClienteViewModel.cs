@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Domain.Utils;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Bankflix.API.Models.Clientes.Clientes
@@ -33,7 +34,15 @@ namespace Bankflix.API.Models.Clientes.Clientes
         public string Telefone { get; set; }
 
         [Required(ErrorMessage = "A senha é obrigatória.")]
-        public string Senha { get; }
+        public string Senha { get; set; }
+
+        public string SenhaCriptografada
+        {
+            get
+            {
+                return Criptografia.CriptografarComMD5(Senha);
+            }
+        }
 
         public DateTime DataHoraCriacao { get; set; }
     }

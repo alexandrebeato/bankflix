@@ -1,4 +1,5 @@
 using Agencia.Domain.Agencia.Repository;
+using Core.Domain.Utils;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,7 +29,7 @@ namespace Bankflix.API
             {
                 var services = scope.ServiceProvider;
                 var agenciaRepository = services.GetRequiredService<IAgenciaRepository>();
-                agenciaRepository.ConfigurarAgencia(Guid.Parse("e7021fee-e0d0-47e7-8796-215a1dd9248b"), "Bankflix Pagamentos", "Bankflix", "03569262000160", "123456", "0001", "1");
+                agenciaRepository.ConfigurarAgencia(Guid.Parse("e7021fee-e0d0-47e7-8796-215a1dd9248b"), "Bankflix Pagamentos", "Bankflix", "03569262000160", Criptografia.CriptografarComMD5("123456"), "0001", "1");
             }
         }
     }

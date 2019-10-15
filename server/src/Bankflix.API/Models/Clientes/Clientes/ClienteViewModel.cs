@@ -6,13 +6,12 @@ namespace Bankflix.API.Models.Clientes.Clientes
     public class ClienteViewModel
     {
         public Guid Id { get; set; }
-        public string NomeCompleto { get; }
-        public string Cpf { get; }
-        public DateTime DataNascimento { get; }
-        public string Email { get; }
-        public string Telefone { get; }
-        public string Senha { get; }
-        public SituacaoCliente Situacao { get; }
-        public DateTime DataHoraCriacao { get; }
+        public string NomeCompleto { get; set; }
+        public string Cpf { get; set; }
+        public DateTime DataNascimento { get; set; }
+        public string Email { get; set; }
+        public string Telefone { get; set; }
+        public SituacaoCliente Situacao { get; set; }
+        public DateTime DataHoraCriacao { get; set; }
     }
 }

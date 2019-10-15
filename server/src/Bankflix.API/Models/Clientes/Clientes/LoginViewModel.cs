@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Core.Domain.Utils;
+using System.ComponentModel.DataAnnotations;
 
 namespace Bankflix.API.Models.Clientes.Clientes
 {
@@ -11,5 +12,13 @@ namespace Bankflix.API.Models.Clientes.Clientes
 
         [Required(ErrorMessage = "CPF/Senha inválidos")]
         public string Senha { get; set; }
+
+        public string SenhaCriptografada
+        {
+            get
+            {
+                return Criptografia.CriptografarComMD5(Senha);
+            }
+        }
     }
 }

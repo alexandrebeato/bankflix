@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Bankflix.API.Configurations;
+using Bankflix.API.Models;
 using Bankflix.API.Models.Clientes.Clientes;
 using Clientes.Commands.Clientes;
 using Clientes.Domain.Clientes.Enums;
@@ -10,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Bankflix.API.Controllers.Clientes
@@ -40,6 +43,35 @@ namespace Bankflix.API.Controllers.Clientes
 
             await _mediatorHandler.SendCommand(_mapper.Map<CadastrarClienteCommand>(cadastrarClienteViewModel));
             return Response(cadastrarClienteViewModel);
+        }
+
+        [HttpPost]
+        [Route("login")]
+        [AllowAnonymous]
+        public IActionResult Login([FromBody] LoginViewModel loginViewModel)
+        {
+            if (!ModelState.IsValid)
+                return Response(loginViewModel);
+
+            var cliente = _clienteRepository.Buscar(c => c.Cpf == loginViewModel.Cpf && c.Senha == loginViewModel.SenhaCriptografada).FirstOrDefault();
+
+            if (cliente == null)
+            {
+                NotificarErro(nameof(cliente), "CPF/Senha inválidos");
+                return Response(loginViewModel);
+            }
+
+            var usuarioViewModel = new UsuarioViewModel
+            {
+                Id = cliente.Id,
+                TipoUsuario = TipoUsuario.Cliente
+            };
+
+            return Response(new
+            {
+                token = ConfiguracoesSeguranca.GerarToken(usuarioViewModel),
+                cliente = _mapper.Map<ClienteViewModel>(cliente)
+            });
         }
 
         [HttpGet]
