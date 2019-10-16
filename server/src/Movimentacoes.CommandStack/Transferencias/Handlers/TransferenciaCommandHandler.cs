@@ -79,22 +79,34 @@ namespace Movimentacoes.CommandStack.Transferencias.Handlers
             var clienteOrigem = ObterClienteExistente(request.ClienteOrigemId);
 
             if (clienteOrigem == null)
+            {
+                NotificarErro(nameof(request.ClienteOrigemId), "Conta inexistente.");
                 return Falha();
+            }
 
             var contaOrigem = ObterContaExistentePorCliente(clienteOrigem.Id);
 
             if (contaOrigem == null)
+            {
+                NotificarErro(nameof(request.ClienteOrigemId), "Conta inexistente.");
                 return Falha();
+            }
 
             var contaDestino = ObterContaExistentePorNumero(request.NumeroContaDestino, request.DigitoVerificadorContaDestino);
 
             if (contaDestino == null)
+            {
+                NotificarErro(nameof(request.ClienteOrigemId), "Conta inexistente.");
                 return Falha();
+            }
 
             var clienteDestino = ObterClienteExistente(contaDestino.ClienteId);
 
             if (clienteDestino == null)
+            {
+                NotificarErro(nameof(request.ClienteOrigemId), "Conta inexistente.");
                 return Falha();
+            }
 
             var transferencia = TransferenciaAdapter.ToTransferencia(request);
             transferencia.DefinirContaOrigem(contaOrigem.Id, contaOrigem.Numero, contaOrigem.DigitoVerificador, clienteOrigem.Id, clienteOrigem.NomeCompleto, clienteOrigem.Cpf);

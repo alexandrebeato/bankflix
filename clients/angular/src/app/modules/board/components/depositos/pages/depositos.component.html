@@ -70,5 +70,8 @@
         </mat-accordion>
         <mat-progress-bar *ngIf="obtendoDepositos" mode="indeterminate">
         </mat-progress-bar>
+        <div class="text-center" *ngIf="!meusDepositos.length && !obtendoDepositos">
+            <h3>Não há depósitos para exibir.</h3>
+        </div>
     </div>
 </div>

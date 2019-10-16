@@ -72,7 +72,7 @@ export class DepositosComponent implements OnInit {
     }
 
     exibirErros(erroResponse: HttpErrorResponse): void {
-        erroResponse.error.errors.foreach(erro => {
+        erroResponse.error.errors.forEach(erro => {
             this.snackBar.open(erro, 'Ok');
         });
     }

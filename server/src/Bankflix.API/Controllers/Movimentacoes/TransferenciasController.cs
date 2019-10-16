@@ -9,6 +9,7 @@ using Movimentacoes.Commands.Transferencias;
 using Movimentacoes.Domain.Transferencias.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Bankflix.API.Controllers.Movimentacoes
@@ -56,7 +57,7 @@ namespace Bankflix.API.Controllers.Movimentacoes
         [Authorize(Policy = "Cliente")]
         public IEnumerable<TransferenciaViewModel> ObterTransferenciasRealizadasUsuarioAutenticado()
         {
-            return _mapper.Map<IEnumerable<TransferenciaViewModel>>(_transferenciaRepository.ObterPorClienteOrigem(_usuario.ObterAutenticadoId()));
+            return _mapper.Map<IEnumerable<TransferenciaViewModel>>(_transferenciaRepository.ObterPorClienteOrigem(_usuario.ObterAutenticadoId()).ToList().OrderByDescending(t => t.DataHoraCriacao));
         }
 
         [HttpGet]
@@ -64,7 +65,7 @@ namespace Bankflix.API.Controllers.Movimentacoes
         [Authorize(Policy = "Cliente")]
         public IEnumerable<TransferenciaViewModel> ObterTransferenciasRecebidasUsuarioAutenticado()
         {
-            return _mapper.Map<IEnumerable<TransferenciaViewModel>>(_transferenciaRepository.ObterPorClienteDestino(_usuario.ObterAutenticadoId()));
+            return _mapper.Map<IEnumerable<TransferenciaViewModel>>(_transferenciaRepository.ObterPorClienteDestino(_usuario.ObterAutenticadoId()).ToList().OrderByDescending(t => t.DataHoraCriacao));
         }
     }
 }

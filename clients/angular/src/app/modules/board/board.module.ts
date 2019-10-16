@@ -19,8 +19,9 @@ import { TransferenciasComponent } from './components/transferencias/components/
 import { ContasService } from './services/contas.service';
 import { DepositosService } from './services/depositos.service';
 import { NgxMaskModule } from 'ngx-mask';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { TransferenciasService } from './services/transferencias.service';
 
 @NgModule({
     declarations: [
@@ -45,12 +46,14 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
         MatProgressBarModule,
         NgxMaskModule.forRoot(),
         FormsModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        ReactiveFormsModule
     ],
     exports: [],
     providers: [
         ContasService,
-        DepositosService
+        DepositosService,
+        TransferenciasService
     ],
 })
 

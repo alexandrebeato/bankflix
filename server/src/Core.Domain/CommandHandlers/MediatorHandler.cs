@@ -93,6 +93,7 @@ namespace Core.Domain.CommandHandlers
                         {
                             var services = scope.ServiceProvider;
                             var mediator = services.GetRequiredService<IMediator>();
+                            Thread.Sleep(30000);
                             mediator.Send((Command)comando);
                         }
                     };

@@ -6,33 +6,160 @@
                 <mat-card-subtitle>Faça uma transferência para outra conta facilmente</mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
-                <div class="row">
-                    <div class="col-lg-5 col-md-5 col-sm-12">
-                        <mat-form-field style="width: 100% !important;">
-                            <input matInput placeholder="Número da conta">
-                        </mat-form-field>
+                <form [formGroup]="formTransferencia">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-12">
+                            <mat-form-field style="width: 100% !important;">
+                                <input matInput placeholder="Número da conta" formControlName="numeroContaDestino">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                            <mat-form-field style="width: 100% !important;">
+                                <input matInput placeholder="Dígito" formControlName="digitoVerificadorContaDestino">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <mat-form-field style="width: 100% !important;">
+                                <input matInput placeholder="Valor" formControlName="valor">
+                            </mat-form-field>
+                        </div>
                     </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12">
-                        <mat-form-field style="width: 100% !important;">
-                            <input matInput placeholder="Dígito">
-                        </mat-form-field>
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12">
-                        <mat-form-field style="width: 100% !important;">
-                            <input matInput placeholder="Valor">
-                        </mat-form-field>
-                    </div>
-                </div>
+                </form>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-stroked-button color="accent" style="width: 100%;">
+                <button mat-stroked-button color="accent" style="width: 100%;"
+                    [disabled]="formTransferencia.invalid || solicitandoTransferencia"
+                    (click)="solicitarTransferencia()">
                     <mat-icon>attach_money</mat-icon>
                     Realizar transferência
                 </button>
                 <br>
                 <br>
-                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                <mat-progress-bar *ngIf="solicitandoTransferencia" mode="indeterminate"></mat-progress-bar>
             </mat-card-actions>
         </mat-card>
+    </div>
+</div>
+<div class="row align-items-center">
+    <div class="col-12">
+        <div class="col-12 text-left">
+            <h2>Transferências realizadas
+                <button mat-button color="primary" (click)="obterTransferenciasRealizadas()">
+                    <mat-icon>refresh</mat-icon>
+                </button></h2>
+        </div>
+        <mat-accordion *ngIf="minhasTransferenciasRealizadas.length">
+            <mat-expansion-panel *ngFor="let transferencia of minhasTransferenciasRealizadas">
+                <mat-expansion-panel-header>
+                    <mat-panel-description>
+                        <table style="width: 100%;">
+                            <tr [class]="obterFormatacaoSituacao(transferencia.situacao).cor">
+                                <td class="text-left">
+                                    {{ obterFormatacaoSituacao(transferencia.situacao).texto }}
+                                </td>
+                                <td class="text-right">
+                                    {{ transferencia.valorEmReais | currency: 'BRL' }}
+                                </td>
+                            </tr>
+                        </table>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="row no-gutters">
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>Conta origem: </b>
+                        {{ transferencia.contaOrigem.numero }}-{{ transferencia.contaOrigem.digitoVerificador }}</div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>Cliente: </b>
+                        {{ transferencia.contaOrigem.cliente.nomeCompleto }}</div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>CPF: </b>
+                        {{ transferencia.contaOrigem.cliente.cpf }}
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-right">
+                        {{ transferencia.dataHoraCriacao | date: 'dd/MM/yyyy HH:mm' }}
+                    </div>
+                </div>
+                <div class="row no-gutters" style="margin-top: 10px;">
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>Conta destino: </b>
+                        {{ transferencia.contaDestino.numero }}-{{ transferencia.contaDestino.digitoVerificador }}</div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>Cliente: </b>
+                        {{ transferencia.contaDestino.cliente.nomeCompleto }}</div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>CPF: </b>
+                        {{ transferencia.contaDestino.cliente.cpf }}
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-right">
+                        {{ transferencia.dataHoraCriacao | date: 'dd/MM/yyyy HH:mm' }}
+                    </div>
+                </div>
+                <div class="row no-gutters" style="margin-top: 10px;" *ngIf="transferencia.situacao == 3">
+                    <div class="col-12 text-left"><b>Motivo cancelamento: </b> {{ transferencia.motivoCancelamento}}
+                    </div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <mat-progress-bar *ngIf="obtendoMinhasTransferenciasRealizadas" mode="indeterminate">
+        </mat-progress-bar>
+        <div class="text-center"
+            *ngIf="!minhasTransferenciasRealizadas.length && !obtendoMinhasTransferenciasRealizadas">
+            <h3>Não há transferências para exibir.</h3>
+        </div>
+    </div>
+</div>
+<div class="row align-items-center">
+    <div class="col-12">
+        <div class="col-12 text-left">
+            <h2>Transferências recebidas
+                <button mat-button color="primary" (click)="obterTransferenciasRecebidas()">
+                    <mat-icon>refresh</mat-icon>
+                </button></h2>
+        </div>
+        <mat-accordion *ngIf="minhasTransferenciasRecebidas.length">
+            <mat-expansion-panel *ngFor="let transferencia of minhasTransferenciasRecebidas">
+                <mat-expansion-panel-header>
+                    <mat-panel-description>
+                        <table style="width: 100%;">
+                            <tr [class]="obterFormatacaoSituacao(transferencia.situacao).cor">
+                                <td class="text-left">
+                                    {{ obterFormatacaoSituacao(transferencia.situacao).texto }}
+                                </td>
+                                <td class="text-right">
+                                    {{ transferencia.valorEmReais | currency: 'BRL' }}
+                                </td>
+                            </tr>
+                        </table>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="row no-gutters">
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>Conta origem: </b>
+                        {{ transferencia.contaOrigem.numero }}-{{ transferencia.contaOrigem.digitoVerificador }}</div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>Cliente: </b>
+                        {{ transferencia.contaOrigem.cliente.nomeCompleto }}</div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>CPF: </b>
+                        {{ transferencia.contaOrigem.cliente.cpf }}
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-right">
+                        {{ transferencia.dataHoraCriacao | date: 'dd/MM/yyyy HH:mm' }}
+                    </div>
+                </div>
+                <div class="row no-gutters" style="margin-top: 10px;">
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>Conta destino: </b>
+                        {{ transferencia.contaDestino.numero }}-{{ transferencia.contaDestino.digitoVerificador }}</div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>Cliente: </b>
+                        {{ transferencia.contaDestino.cliente.nomeCompleto }}</div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>CPF: </b>
+                        {{ transferencia.contaDestino.cliente.cpf }}
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-right">
+                        {{ transferencia.dataHoraCriacao | date: 'dd/MM/yyyy HH:mm' }}
+                    </div>
+                </div>
+                <div class="row no-gutters" style="margin-top: 10px;" *ngIf="transferencia.situacao == 3">
+                    <div class="col-12 text-left"><b>Motivo cancelamento: </b> {{ transferencia.motivoCancelamento}}
+                    </div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <mat-progress-bar *ngIf="obtendoMinhasTransferenciasRecebidas" mode="indeterminate">
+        </mat-progress-bar>
+        <div class="text-center" *ngIf="!minhasTransferenciasRecebidas.length && !obtendoMinhasTransferenciasRecebidas">
+            <h3>Não há transferências para exibir.</h3>
+        </div>
     </div>
 </div>
