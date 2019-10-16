@@ -1,5 +1,9 @@
 <div class="row">
-    <div class="col-lg-4 col-md-4 col-sm-12">
+    <div class="col-12" *ngIf="obtendoMinhaConta">
+        <mat-progress-bar mode="indeterminate">
+        </mat-progress-bar>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12" *ngIf="minhaConta">
         <mat-card>
             <mat-card-header>
                 <mat-card-title>Ajuda</mat-card-title>
@@ -16,37 +20,37 @@
             </mat-card-actions>
         </mat-card>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-12">
+    <div class="col-lg-4 col-md-4 col-sm-12" *ngIf="minhaConta">
         <mat-card>
             <mat-card-header>
                 <mat-card-title>Conta</mat-card-title>
                 <mat-card-subtitle>Seu número de conta</mat-card-subtitle>
             </mat-card-header>
             <mat-card-content class="text-right">
-                <h2>0195953-0</h2>
+                <h2>{{ minhaConta.numero }}-{{ minhaConta.digitoVerificador }}</h2>
             </mat-card-content>
             <mat-card-actions class="text-center">
-                <button mat-stroked-button color="accent" style="width: 100%;">
+                <a mat-stroked-button color="accent" style="width: 100%;" [routerLink]="[ 'transferencias' ]">
                     <mat-icon>attach_money</mat-icon>
                     Realizar transferência
-                </button>
+                </a>
             </mat-card-actions>
         </mat-card>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-12">
+    <div class="col-lg-4 col-md-4 col-sm-12" *ngIf="minhaConta">
         <mat-card>
             <mat-card-header>
                 <mat-card-title>Saldo atual</mat-card-title>
                 <mat-card-subtitle>Valor disponível na sua conta</mat-card-subtitle>
             </mat-card-header>
             <mat-card-content class="text-right">
-                <h2>R$ 150,00</h2>
+                <h2>{{ minhaConta.saldoDisponivelEmReais | currency: 'BRL' }}</h2>
             </mat-card-content>
             <mat-card-actions class="text-center">
-                <button mat-stroked-button color="accent" style="width: 100%;">
+                <a mat-stroked-button color="accent" style="width: 100%;" [routerLink]="[ 'depositos' ]">
                     <mat-icon>account_balance</mat-icon>
                     Realizar depósito
-                </button>
+                </a>
             </mat-card-actions>
         </mat-card>
     </div>

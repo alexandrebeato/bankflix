@@ -9,6 +9,7 @@ using Movimentacoes.Commands.Depositos;
 using Movimentacoes.Domain.Depositos.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Bankflix.API.Controllers.Movimentacoes
@@ -56,7 +57,7 @@ namespace Bankflix.API.Controllers.Movimentacoes
         [Authorize(Policy = "Cliente")]
         public IEnumerable<DepositoViewModel> ObterDepositosUsuarioAutenticado()
         {
-            return _mapper.Map<IEnumerable<DepositoViewModel>>(_depositoRepository.ObterPorCliente(_usuario.ObterAutenticadoId()));
+            return _mapper.Map<IEnumerable<DepositoViewModel>>(_depositoRepository.ObterPorCliente(_usuario.ObterAutenticadoId()).OrderByDescending(d => d.DataHoraCriacao));
         }
     }
 }

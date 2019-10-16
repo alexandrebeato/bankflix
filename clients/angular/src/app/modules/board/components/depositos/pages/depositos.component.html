@@ -8,20 +8,67 @@
             <mat-card-content>
                 <mat-form-field appearance="outline" style="width: 100% !important;">
                     <mat-label>Valor</mat-label>
-                    <input matInput placeholder="Valor para ser depositado">
+                    <input matInput placeholder="Valor para ser depositado" mask="0*,00" [dropSpecialCharacters]="false"
+                        [(ngModel)]="valorSolicitarDeposito">
                     <mat-icon color="primary" matSuffix>attach_money</mat-icon>
-                    <mat-hint class="text-danger">Valor deve ser maior que 0 (zero).</mat-hint>
+                    <mat-hint class="text-danger" *ngIf="valorSolicitarDeposito <= 0">Valor deve ser maior que 0 (zero).
+                    </mat-hint>
                 </mat-form-field>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-stroked-button color="accent" style="width: 100%;">
+                <button mat-stroked-button color="accent" style="width: 100%;"
+                    [disabled]="valorSolicitarDeposito <= 0 || solicitandoDeposito" (click)="solicitarDeposito()">
                     <mat-icon>account_balance</mat-icon>
                     Realizar depósito
                 </button>
                 <br>
                 <br>
-                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                <mat-progress-bar *ngIf="solicitandoDeposito" mode="indeterminate"></mat-progress-bar>
             </mat-card-actions>
         </mat-card>
+    </div>
+</div>
+<div class="row align-items-center">
+    <div class="col-12">
+        <div class="col-12 text-left">
+            <h2>Depósitos realizados
+                <button mat-button color="primary" (click)="obterMeusDepositos()">
+                    <mat-icon>refresh</mat-icon>
+                </button></h2>
+        </div>
+        <mat-accordion *ngIf="meusDepositos.length">
+            <mat-expansion-panel *ngFor="let deposito of meusDepositos">
+                <mat-expansion-panel-header>
+                    <mat-panel-description>
+                        <table style="width: 100%;">
+                            <tr [class]="obterFormatacaoSituacao(deposito.situacao).cor">
+                                <td class="text-left">
+                                    {{ obterFormatacaoSituacao(deposito.situacao).texto }}
+                                </td>
+                                <td class="text-right">
+                                    {{ deposito.valorEmReais | currency: 'BRL' }}
+                                </td>
+                            </tr>
+                        </table>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="row no-gutters">
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>Conta: </b>
+                        {{ deposito.conta.numero }}-{{ deposito.conta.digitoVerificador }}</div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>Cliente: </b>
+                        {{ deposito.conta.cliente.nomeCompleto }}</div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>CPF: </b> {{ deposito.conta.cliente.cpf }}
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-right">
+                        {{ deposito.dataHoraCriacao | date: 'dd/MM/yyyy HH:mm' }}
+                    </div>
+                </div>
+                <div class="row no-gutters" style="margin-top: 10px;" *ngIf="deposito.situacao == 3">
+                    <div class="col-12 text-left"><b>Motivo cancelamento: </b> {{ deposito.motivoCancelamento}}</div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <mat-progress-bar *ngIf="obtendoDepositos" mode="indeterminate">
+        </mat-progress-bar>
     </div>
 </div>

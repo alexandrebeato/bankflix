@@ -4,6 +4,7 @@ using Movimentacoes.Domain.Depositos;
 using Movimentacoes.Domain.Depositos.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Movimentacoes.Infra.Data.Mongo.Repository
 {

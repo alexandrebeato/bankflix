@@ -24,7 +24,7 @@ namespace Bankflix.API.Models.Movimentacoes.Depositos
         {
             get
             {
-                return (long)Math.Round(Valor, 2, MidpointRounding.AwayFromZero) * 100;
+                return (long)(Valor * 100);
             }
         }
     }

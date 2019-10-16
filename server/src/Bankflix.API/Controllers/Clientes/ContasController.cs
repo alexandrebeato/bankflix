@@ -41,7 +41,7 @@ namespace Bankflix.API.Controllers.Clientes
         [Authorize(Policy = "Cliente")]
         public ContaViewModel ObterContaUsuarioLogado()
         {
-            return _mapper.Map<ContaViewModel>(_contaRepository.ObterPorId(_usuario.ObterAutenticadoId()));
+            return _mapper.Map<ContaViewModel>(_contaRepository.ObterPorCliente(_usuario.ObterAutenticadoId()));
         }
     }
 }

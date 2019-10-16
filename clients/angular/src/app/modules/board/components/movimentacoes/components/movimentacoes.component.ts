@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ContasService } from '../../../services/contas.service';
+import { Conta } from 'src/app/models/clientes/conta';
 
 @Component({
     selector: 'app-movimentacoes',
@@ -6,7 +8,26 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['../styles/movimentacoes.component.scss']
 })
 export class MovimentacoesComponent implements OnInit {
-    constructor() { }
 
-    ngOnInit(): void { }
+    minhaConta: Conta;
+    obtendoMinhaConta = true;
+
+    constructor(
+        private contasService: ContasService
+    ) { }
+
+    ngOnInit(): void {
+        this.obterDadosMinhaConta();
+    }
+
+    obterDadosMinhaConta(): void {
+        this.obtendoMinhaConta = true;
+
+        this.contasService.obterMinhaConta().subscribe(
+            contaRetorno => {
+                this.minhaConta = contaRetorno;
+                this.obtendoMinhaConta = false;
+            }
+        );
+    }
 }

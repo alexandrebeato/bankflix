@@ -16,6 +16,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { TransferenciasComponent } from './components/transferencias/components/transferencias.component';
+import { ContasService } from './services/contas.service';
+import { DepositosService } from './services/depositos.service';
+import { NgxMaskModule } from 'ngx-mask';
+import { FormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
     declarations: [
@@ -37,10 +42,16 @@ import { TransferenciasComponent } from './components/transferencias/components/
         MatExpansionModule,
         MatInputModule,
         MatProgressSpinnerModule,
-        MatProgressBarModule
+        MatProgressBarModule,
+        NgxMaskModule.forRoot(),
+        FormsModule,
+        MatSnackBarModule
     ],
     exports: [],
-    providers: [],
+    providers: [
+        ContasService,
+        DepositosService
+    ],
 })
 
 export class BoardModule { }
