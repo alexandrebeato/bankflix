@@ -10,17 +10,20 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { NgxMaskModule } from 'ngx-mask';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDividerModule } from '@angular/material/divider';
 import { ClientesService } from './services/clientes.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { LoginAgenciaComponent } from './components/agencia/components/login-agencia.component';
+import { AgenciaService } from './services/agencias.service';
 
 @NgModule({
     declarations: [
         AutenticacaoComponent,
-        CadastroClienteComponent
+        CadastroClienteComponent,
+        LoginAgenciaComponent
     ],
     imports: [
         CommonModule,
@@ -40,7 +43,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ],
     exports: [],
     providers: [
-        ClientesService
+        ClientesService,
+        AgenciaService
     ],
 })
 

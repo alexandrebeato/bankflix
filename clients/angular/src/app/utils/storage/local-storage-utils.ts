@@ -1,4 +1,5 @@
 import { Cliente } from 'src/app/models/clientes/cliente';
+import { Agencia } from 'src/app/models/agencia/agencia';
 
 export class LocalStorageUtils {
     private static clienteKey = 'bankflix.cliente';
@@ -29,6 +30,14 @@ export class LocalStorageUtils {
 
     public static definirAgenciaToken(token: string): void {
         localStorage.setItem(this.agenciaToken, token);
+    }
+
+    public static definirAgencia(agencia: Agencia): void {
+        localStorage.setItem(this.agenciaKey, JSON.stringify(agencia));
+    }
+
+    public static obterAgencia(): Agencia {
+        return JSON.parse(localStorage.getItem(this.agenciaKey));
     }
 
     public static limparTudo(): void {

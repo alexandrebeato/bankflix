@@ -1,0 +1,52 @@
+<div class="row align-items-center" style="margin-top: 70px;">
+    <div class="col-lg-6 col-md-6 col-sm-12 offset-lg-3 offset-md-3">
+        <div class="text-center">
+            <img src="../../../../../../assets/img/logo-purple.png">
+        </div>
+        <div>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Acessar</mat-card-title>
+                    <mat-card-subtitle>Entrar na área administrativa</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <form [formGroup]="formLogin">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <mat-form-field style="width: 100% !important;">
+                                    <input matInput placeholder="CNPJ" mask="00.000.000/0000-00" formControlName="cnpj">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <mat-form-field style="width: 100% !important;">
+                                    <input matInput placeholder="Digite sua senha"
+                                        [type]="esconderSenhaLogin ? 'password' : 'text'" formControlName="senha">
+                                    <button mat-icon-button matSuffix (click)="esconderSenhaLogin = !esconderSenhaLogin"
+                                        [attr.aria-label]="'Esconder senha'" [attr.aria-pressed]="esconderSenhaLogin">
+                                        <mat-icon>{{esconderSenhaLogin ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    </button>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </form>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-stroked-button color="accent" style="width: 100%;" (click)="login()"
+                        [disabled]="formLogin.invalid || logando">
+                        <mat-icon>input</mat-icon>
+                        Entrar
+                    </button>
+                    <br>
+                    <br>
+                    <a mat-button color="accent" style="width: 100%;" [routerLink]="[ '/' ]">
+                        <mat-icon>arrow_back</mat-icon>
+                        Voltar para o login
+                    </a>
+                    <br>
+                    <br>
+                    <mat-progress-bar *ngIf="logando" mode="indeterminate"></mat-progress-bar>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>
