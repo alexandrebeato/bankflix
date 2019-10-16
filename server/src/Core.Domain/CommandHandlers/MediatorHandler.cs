@@ -67,7 +67,7 @@ namespace Core.Domain.CommandHandlers
             return Task.CompletedTask;
         }
 
-        public async Task SubscreverFilas()
+        public Task SubscreverFilas()
         {
             using (var connection = _connectionFactory.CreateConnection())
             {
@@ -116,6 +116,7 @@ namespace Core.Domain.CommandHandlers
                     }
 
                     Console.ReadLine();
+                    return Task.CompletedTask;
                 }
             }
         }
