@@ -67,7 +67,7 @@ namespace Core.Domain.CommandHandlers
             return Task.CompletedTask;
         }
 
-        public Task SubscreverFilas()
+        public async Task SubscreverFilas()
         {
             using (var connection = _connectionFactory.CreateConnection())
             {
@@ -83,7 +83,7 @@ namespace Core.Domain.CommandHandlers
                     }
 
                     var consumer = new EventingBasicConsumer(channel);
-                    consumer.Received += (model, eventArgs) =>
+                    consumer.Received += async (model, eventArgs) =>
                     {
                         var bodyMessage = eventArgs.Body;
                         var comando = JsonConvert.DeserializeObject(Encoding.UTF8.GetString(bodyMessage), _queueableService.Comandos.Find(t => t.FullName == eventArgs.RoutingKey));
@@ -94,19 +94,28 @@ namespace Core.Domain.CommandHandlers
                             var services = scope.ServiceProvider;
                             var mediator = services.GetRequiredService<IMediator>();
                             Thread.Sleep(30000);
-                            mediator.Send((Command)comando);
+
+                            try
+                            {
+                                await mediator.Send((Command)comando);
+                                channel.BasicAck(eventArgs.DeliveryTag, false);
+                            }
+
+                            catch
+                            {
+                                channel.BasicNack(eventArgs.DeliveryTag, false, true);
+                            }
                         }
                     };
 
                     foreach (var queueType in _queueableService.Comandos)
                     {
                         channel.BasicConsume(queueType.FullName,
-                                         autoAck: true,
+                                         autoAck: false,
                                          consumer: consumer);
                     }
 
                     Console.ReadLine();
-                    return Task.CompletedTask;
                 }
             }
         }

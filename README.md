@@ -18,6 +18,7 @@ Se você gostou do projeto ou se ele te ajudou, por favor dê uma estrela ;)
 - Todos os valores internamente são tratados como centavos convertidos para R$ apenas na exibição ao cliente
 - Os eventos orquestrados por filas terão um delay de 30 segundos apenas para percepção do uso da fila.
 - O contexto de AGÊNCIA não possui CQRS para demonstrar que pode-se manter diferentes padrões conforme a necessidade.
+- É possível acompanhar o ACK manual com sistema de filas re-inserindo a transação na fila caso haja alguma falha.
 
 ## Fluxo
 - Ao iniciar a aplicação pela primeira vez será cadastrado uma agência com um usuário administrador
