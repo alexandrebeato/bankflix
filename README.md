@@ -8,6 +8,9 @@ O projeto **Bankflix** simula um banco digital, contendo a área do cliente e ad
 ## Dê uma estrela! :star:
 Se você gostou do projeto ou se ele te ajudou, por favor dê uma estrela ;)
 
+## Atenção
+Este não é um projeto para ser utilizado em produção. Ele é apenas uma demonstração do uso das tecnologias e da arquitetura em que foi construído. **Existem ajustes e melhorias a serem feitos**.
+
 ## Dados para acesso da agência
 
 **CNPJ:** 03569262000160
