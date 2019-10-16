@@ -1,1 +1,36 @@
-movimentacoes.component.html
+<div class="row align-items-center">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+        <h2>Movimentações</h2>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 text-right">
+        <mat-form-field appearance="outline">
+            <mat-label>Data inicial</mat-label>
+            <input name="dataInicial" matInput placeholder="00/00/0000" mask="00/00/0000" [(ngModel)]="dataInicial"
+                [dropSpecialCharacters]="false">
+            <mat-icon color="primary" matSuffix>date_range</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="margin-left: 10px;">
+            <mat-label>Data final</mat-label>
+            <input name="dataInicial" matInput placeholder="00/00/0000" mask="00/00/0000" [(ngModel)]="dataFinal"
+                [dropSpecialCharacters]="false">
+            <mat-icon color="primary" matSuffix>date_range</mat-icon>
+        </mat-form-field>
+        <button mat-mini-fab color="primary" style="margin-left: 10px;" (click)="obterPorPeriodo()">
+            <mat-icon>search</mat-icon>
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <hr>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <mat-progress-bar *ngIf="obtendoMovimentacoes" mode="indeterminate">
+        </mat-progress-bar>
+        <div class="text-center" *ngIf="!movimentacoes.length && !obtendoMovimentacoes && jaPesquisado">
+            <h3>Não há movimentações no período.</h3>
+        </div>
+    </div>
+</div>

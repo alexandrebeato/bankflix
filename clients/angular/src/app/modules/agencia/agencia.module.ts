@@ -18,6 +18,8 @@ import { ClientesPendentesComponent } from './components/clientes-pendentes/comp
 import { ClientesService } from './services/clientes.service';
 import { NgxMaskModule } from 'ngx-mask';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MovimentacoesService } from './services/movimentacoes.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -39,12 +41,14 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
         MatInputModule,
         MatProgressSpinnerModule,
         MatProgressBarModule,
-        NgxMaskModule.forChild(),
-        MatSnackBarModule
+        MatSnackBarModule,
+        NgxMaskModule.forRoot(),
+        FormsModule
     ],
     exports: [],
     providers: [
-        ClientesService
+        ClientesService,
+        MovimentacoesService
     ],
 })
 

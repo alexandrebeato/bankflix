@@ -11,6 +11,14 @@ namespace Bankflix.API.Models.Movimentacoes.Movimentacoes
         public VinculoViewModel Vinculo { get; set; }
         public long Valor { get; set; }
         public DateTime DataHoraCriacao { get; set; }
+
+        public decimal ValorEmReais
+        {
+            get
+            {
+                return Math.Round((decimal)Valor / 100, 2, MidpointRounding.AwayFromZero);
+            }
+        }
     }
 
     public class ContaViewModel

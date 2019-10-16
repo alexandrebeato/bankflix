@@ -43,6 +43,7 @@ namespace Bankflix.API.Controllers.Movimentacoes
             if (!ModelState.IsValid)
                 return Enumerable.Empty<MovimentacaoViewModel>();
 
+            periodoMovimentacoesViewModel.DataFinal = periodoMovimentacoesViewModel.DataFinal.AddHours(23).AddMinutes(59).AddSeconds(59).AddMilliseconds(59);
             return _mapper.Map<IEnumerable<MovimentacaoViewModel>>(_movimentacaoRepository.Buscar(m => m.DataHoraCriacao >= periodoMovimentacoesViewModel.DataInicial && m.DataHoraCriacao <= periodoMovimentacoesViewModel.DataFinal).OrderByDescending(m => m.DataHoraCriacao));
         }
 
