@@ -2,6 +2,18 @@
   <img alt="trivelum logo" src="logo.png" />
 </p>
 
+## Sobre
+O projeto **Bankflix** simula um banco digital, contendo a área do cliente e administrativa, permitindo depósitos e transferências entre contas do mesmo banco..
+
+## Dê uma estrela! :star:
+Se você gostou do projeto ou se ele te ajudou, por favor dê uma estrela ;)
+
+## Dados para acesso da agência
+
+**CNPJ:** 03569262000160
+
+**Senha** 123456
+
 ## Informações importantes
 - Todos os valores internamente são tratados como centavos convertidos para R$ apenas na exibição ao cliente
 - Os eventos orquestrados por filas terão um delay de 30 segundos apenas para percepção do uso da fila.
@@ -16,3 +28,11 @@
 - O cliente poderá realizar uma transferência para outras contas que ao solicitar a transferência ela ficará como pendente, sendo adicionada na fila para ser efetuada ou cancelada.
 - Quando o depósito ou transferência forem efetuados/recusados (cancelado) será disparado um evento de envio de e-mail (apenas simulando, não envia realmente) notificando os clientes.
 - Quando o depósito ou transferência forem efetuados com sucesso, será registrada a movimentação.-
+
+## Autor 👦
+
+* **Alexandre Beato** - *Desenvolvedor* - [GitHub](https://github.com/alexandrebeato)
+
+## License 📃
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details

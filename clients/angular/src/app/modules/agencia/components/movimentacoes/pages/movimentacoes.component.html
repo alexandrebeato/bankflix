@@ -27,6 +27,36 @@
 </div>
 <div class="row">
     <div class="col-12">
+        <mat-accordion *ngIf="movimentacoes.length">
+            <mat-expansion-panel *ngFor="let movimentacao of movimentacoes">
+                <mat-expansion-panel-header>
+                    <mat-panel-description>
+                        <table style="width: 100%;">
+                            <tr [class]="obterFormatacaoTipo(movimentacao.tipo).cor">
+                                <td class="text-left">
+                                    {{ obterTipoVinculoTexto(movimentacao.vinculo.tipo) }}
+                                </td>
+                                <td class="text-right">
+                                    {{ obterFormatacaoTipo(movimentacao.tipo).operacao }}
+                                    {{ movimentacao.valorEmReais | currency: 'BRL' }}
+                                </td>
+                            </tr>
+                        </table>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="row no-gutters">
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>Conta: </b>
+                        {{ movimentacao.conta.numero }}-{{ movimentacao.conta.digitoVerificador }}</div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>Cliente: </b>
+                        {{ movimentacao.conta.cliente.nomeCompleto }}</div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>CPF: </b> {{ movimentacao.conta.cliente.cpf }}
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-right">
+                        {{ movimentacao.dataHoraCriacao | date: 'dd/MM/yyyy HH:mm' }}
+                    </div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
         <mat-progress-bar *ngIf="obtendoMovimentacoes" mode="indeterminate">
         </mat-progress-bar>
         <div class="text-center" *ngIf="!movimentacoes.length && !obtendoMovimentacoes && jaPesquisado">

@@ -57,12 +57,12 @@
 </div>
 <br>
 <br>
-<div class="row">
+<div class="row" *ngIf="minhasMovimentacoes.length">
     <div class="col-12 text-left">
         <h2>Extrato</h2>
     </div>
     <div class="col-12">
-        <mat-accordion *ngIf="minhasMovimentacoes.length">
+        <mat-accordion>
             <mat-expansion-panel *ngFor="let movimentacao of minhasMovimentacoes">
                 <mat-expansion-panel-header>
                     <mat-panel-description>
