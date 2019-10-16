@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  bankflix-api:
+    build: .\server
+    container_name: bankflix-api
+    depends_on:
+      - mongo
+      - rabbitmq
+    ports:
+    - 1717:80
+    networks:
+      - bankflix
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+    - 27017:27017
+    networks:
+      - bankflix
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+    - 5672:5672
+    - 15672:15672
+    networks:
+      - bankflix
+
+networks:
+  bankflix:

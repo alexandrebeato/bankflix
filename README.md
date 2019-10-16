@@ -22,6 +22,7 @@ Este não é um projeto para ser utilizado em produção. Ele é apenas uma demo
 - Os eventos orquestrados por filas terão um delay de 30 segundos apenas para percepção do uso da fila.
 - O contexto de AGÊNCIA não possui CQRS para demonstrar que pode-se manter diferentes padrões conforme a necessidade.
 - É possível acompanhar o ACK manual com sistema de filas re-inserindo a transação na fila caso haja alguma falha.
+- Os containeres **não** estão utilizando volumes, portanto ao matá-los irá causar a perda dos dados.
 
 ## Fluxo
 - Ao iniciar a aplicação pela primeira vez será cadastrado uma agência com um usuário administrador
