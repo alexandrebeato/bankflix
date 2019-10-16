@@ -15,7 +15,7 @@ namespace Bankflix.API
         {
             var host = CreateHostBuilder(args).Build();
             ConfigurarAgencia(host);
-            SubscreverFilas(host);
+            // SubscreverFilas(host);
             host.Run();
         }
 

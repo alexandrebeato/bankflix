@@ -26,17 +26,15 @@ namespace Core.Domain.CommandHandlers
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
             _queueableService = queueableService ?? throw new ArgumentNullException(nameof(queueableService));
-            _connectionFactory = new ConnectionFactory() { HostName = configuration["rabbitmq:hostname"] };
+            _connectionFactory = new ConnectionFactory() { Uri = new Uri(configuration["rabbitmq:uri"]) };
             _host = host ?? throw new ArgumentNullException(nameof(host));
         }
 
         public Task SendCommand<T>(T comando, CancellationToken cancellation = default, bool enqueue = false) where T : Command
         {
-            if (enqueue)
-                return PublicarFila(comando, cancellation); // TODO: Adicionar à fila com circuit break via polly.
-
-            else
-                return _mediator.Send(comando, cancellation);
+            // if (enqueue)
+            //     return PublicarFila(comando, cancellation);
+            return _mediator.Send(comando, cancellation);
         }
 
         public Task RaiseEvent<T>(T evento, CancellationToken cancellation = default, bool enqueue = false) where T : Event => _mediator.Publish(evento, cancellation);
