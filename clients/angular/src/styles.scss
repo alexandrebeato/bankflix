@@ -284,3 +284,13 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
 .text-danger {
   color: #e74c3c !important;
 }
+
+.btn-success {
+  background-color: #2ecc71 !important;
+  color: #ffffff !important;
+}
+
+.btn-danger {
+  background-color: #e74c3c !important;
+  color: #ffffff !important;
+}

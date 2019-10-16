@@ -38,11 +38,10 @@ export class CadastroClienteComponent {
         cliente.dataNascimento = cliente.dataNascimento.split('/').reverse().join('-');
 
         this.clientesService.cadastrar(cliente).subscribe(
-            cadastroResponse => {
-                LocalStorageUtils.definirClienteToken(cadastroResponse.token);
-                LocalStorageUtils.definirCliente(cadastroResponse.cliente);
+            () => {
                 this.cadastrandoCliente = false;
-                this.router.navigate(['board']);
+                this.formCadastro.reset();
+                this.snackBar.open('Sua conta foi solicitada. Quando for aprovada poderá acessá-la normalmente.', 'Ok');
             },
             erroResponse => {
                 this.cadastrandoCliente = false;
@@ -76,7 +75,7 @@ export class CadastroClienteComponent {
 
         return this.formBuilder.group({
             nomeCompleto: ['', Validators.required],
-            cpf: [''],
+            cpf: ['', Validators.required],
             dataNascimento: ['', Validators.required],
             email: ['', Validators.required],
             telefone: ['', Validators.required],

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Movimentacoes.Domain.Movimentacoes.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Bankflix.API.Controllers.Movimentacoes
 {
@@ -32,6 +33,17 @@ namespace Bankflix.API.Controllers.Movimentacoes
         public IEnumerable<MovimentacaoViewModel> ObterTodas()
         {
             return _mapper.Map<IEnumerable<MovimentacaoViewModel>>(_movimentacaoRepository.ObterTodos());
+        }
+
+        [HttpGet]
+        [Route("por-periodo")]
+        [Authorize(Policy = "Agencia")]
+        public IEnumerable<MovimentacaoViewModel> ObterPorPeriodo([FromQuery] PeriodoMovimentacoesViewModel periodoMovimentacoesViewModel)
+        {
+            if (!ModelState.IsValid)
+                return Enumerable.Empty<MovimentacaoViewModel>();
+
+            return _mapper.Map<IEnumerable<MovimentacaoViewModel>>(_movimentacaoRepository.Buscar(m => m.DataHoraCriacao >= periodoMovimentacoesViewModel.DataInicial && m.DataHoraCriacao <= periodoMovimentacoesViewModel.DataFinal).OrderByDescending(m => m.DataHoraCriacao));
         }
 
         [HttpGet]

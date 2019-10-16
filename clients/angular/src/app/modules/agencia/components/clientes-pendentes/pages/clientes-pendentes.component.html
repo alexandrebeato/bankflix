@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-12">
+        <h2>Clientes pendentes</h2>
+        <br>
+        <div *ngIf="clientesPendentes.length">
+            <mat-accordion *ngFor="let cliente of clientesPendentes">
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-description>
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td class="text-left">
+                                        {{ cliente.nomeCompleto }}
+                                    </td>
+                                    <td class="text-right">
+                                        {{ cliente.dataHoraCriacao | date: 'dd/MM/yyyy HH:mm' }}
+                                    </td>
+                                </tr>
+                            </table>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div class="row no-gutters">
+                        <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>CPF: </b> {{ cliente.cpf }}</div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>E-mail: </b> {{ cliente.email }}</div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>Telefone: </b> {{ cliente.telefone }}
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 text-right">
+                            <button mat-button class="btn-success" [disabled]="executandoAcao"
+                                (click)="aprovarCliente(cliente.id)">Aprovar</button>
+                            <button mat-button class="btn-danger" [disabled]="executandoAcao" style="margin-left: 10px;"
+                                (click)="recusarCliente(cliente.id)">Recusar</button>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+        <mat-progress-bar *ngIf="carregandoClientesPendentes || executandoAcao" mode="indeterminate">
+        </mat-progress-bar>
+        <div class="text-center" *ngIf="!carregandoClientesPendentes && !clientesPendentes.length">
+            <h3>Não há clientes pendentes.</h3>
+        </div>
+    </div>
+</div>
