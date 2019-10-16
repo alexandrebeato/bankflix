@@ -22,6 +22,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TransferenciasService } from './services/transferencias.service';
+import { MovimentacoesService } from './services/movimentacoes.service';
 
 @NgModule({
     declarations: [
@@ -53,7 +54,8 @@ import { TransferenciasService } from './services/transferencias.service';
     providers: [
         ContasService,
         DepositosService,
-        TransferenciasService
+        TransferenciasService,
+        MovimentacoesService
     ],
 })
 

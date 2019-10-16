@@ -52,7 +52,7 @@ namespace Bankflix.API.Controllers.Movimentacoes
         [Authorize(Policy = "Cliente")]
         public IEnumerable<MovimentacaoViewModel> ObterMovimentacoesUsuarioAutenticado()
         {
-            return _mapper.Map<IEnumerable<MovimentacaoViewModel>>(_movimentacaoRepository.ObterPorCliente(_usuario.ObterAutenticadoId()));
+            return _mapper.Map<IEnumerable<MovimentacaoViewModel>>(_movimentacaoRepository.ObterPorCliente(_usuario.ObterAutenticadoId()).ToList().OrderByDescending(c => c.DataHoraCriacao));
         }
     }
 }

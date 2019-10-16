@@ -62,52 +62,32 @@
         <h2>Extrato</h2>
     </div>
     <div class="col-12">
-        <mat-accordion>
-            <mat-expansion-panel>
+        <mat-accordion *ngIf="minhasMovimentacoes.length">
+            <mat-expansion-panel *ngFor="let movimentacao of minhasMovimentacoes">
                 <mat-expansion-panel-header>
                     <mat-panel-description>
                         <table style="width: 100%;">
-                            <tr class="text-danger">
+                            <tr [class]="obterFormatacaoTipo(movimentacao.tipo).cor">
                                 <td class="text-left">
-                                    Transferência
+                                    {{ obterTipoVinculoTexto(movimentacao.vinculo.tipo) }}
                                 </td>
                                 <td class="text-right">
-                                    - R$ 53,30
+                                    {{ obterFormatacaoTipo(movimentacao.tipo).operacao }}
+                                    {{ movimentacao.valorEmReais | currency: 'BRL' }}
                                 </td>
                             </tr>
                         </table>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div class="row no-gutters">
-                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>Conta: </b> 552412-5</div>
-                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>Cliente: </b> Alexandre Henrique Beato</div>
-                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>CPF: </b> 406.366.988-23</div>
-                    <div class="col-lg-3 col-md-3 col-sm-12 text-right">
-                        14/10/2019 13:07
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>Conta: </b>
+                        {{ movimentacao.conta.numero }}-{{ movimentacao.conta.digitoVerificador }}</div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>Cliente: </b>
+                        {{ movimentacao.conta.cliente.nomeCompleto }}</div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>CPF: </b> {{ movimentacao.conta.cliente.cpf }}
                     </div>
-                </div>
-            </mat-expansion-panel>
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                    <mat-panel-description>
-                        <table style="width: 100%;">
-                            <tr class="text-success">
-                                <td class="text-left">
-                                    Depósito
-                                </td>
-                                <td class="text-right">
-                                    + R$ 100,30
-                                </td>
-                            </tr>
-                        </table>
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-                <div class="row no-gutters">
-                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>Status: </b> Efetuado</div>
-                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>Nome: </b> Alexandre Henrique Beato</div>
-                    <div class="col-lg-3 col-md-3 col-sm-12 text-left"><b>CPF: </b> 406.366.988-23</div>
                     <div class="col-lg-3 col-md-3 col-sm-12 text-right">
-                        14/10/2019 14:26
+                        {{ movimentacao.dataHoraCriacao | date: 'dd/MM/yyyy HH:mm' }}
                     </div>
                 </div>
             </mat-expansion-panel>
