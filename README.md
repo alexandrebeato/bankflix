@@ -2,6 +2,8 @@
   <img alt="trivelum logo" src="logo.png" />
 </p>
 
+[![Build status](https://dev.azure.com/alexandrebeato-com/Bankflix/_apis/build/status/Bankflix-CI)](https://dev.azure.com/alexandrebeato-com/Bankflix/_build/latest?definitionId=9)
+
 ## Começando
 Para executar a aplicação:
 
