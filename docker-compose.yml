@@ -16,7 +16,7 @@ services:
     container_name: bankflix-api
     depends_on:
       - mongo
-      # - rabbitmq
+      - rabbitmq
     ports:
     - 1717:80
     networks:
@@ -30,16 +30,16 @@ services:
     networks:
       - bankflix
 
-  # rabbitmq:
-  #   image: rabbitmq:3-management
-  #   container_name: rabbitmq
-  #   ports:
-  #   - 5672:5672
-  #   - 15672:15672
-  #   networks:
-  #     - bankflix
-  #   environment:
-  #     RABBITMQ_DEFAULT_VHOST: rabbitmq-bankflix
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+    - 5672:5672
+    - 15672:15672
+    networks:
+      - bankflix
+    environment:
+      RABBITMQ_DEFAULT_VHOST: rabbitmq-bankflix
 
 networks:
   bankflix:

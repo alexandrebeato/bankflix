@@ -13,7 +13,7 @@ namespace Bankflix.API.Configurations
         {
             var comandoFilas = new List<Type>();
             comandoFilas.AddRange(BootstrapperMovimentacoes.RegistrarComandosFila());
-            services.AddScoped<IQueueableService, QueueableService>(q => new QueueableService(comandoFilas));
+            services.AddSingleton<IQueueableService, QueueableService>(q => new QueueableService(comandoFilas));
         }
     }
 }

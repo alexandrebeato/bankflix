@@ -8,6 +8,7 @@ using Core.Domain.CommandHandlers;
 using Core.Domain.Interfaces;
 using Core.Domain.Notifications;
 using Core.Domain.Repository;
+using Core.Domain.Services;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -47,6 +48,7 @@ namespace Bankflix.API
             services.AddMediatR(typeof(Startup));
             services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
             services.AddScoped<IMongoSequenceRepository, MongoSequenceRepository>();
+            services.AddHostedService<QueueHostedService>();
             AutoMapperConfiguration.RegisterMappings();
             BootstrapperAgencia.RegistrarServicos(services);
             BootstrapperClientes.RegistrarServicos(services);

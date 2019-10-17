@@ -32,9 +32,10 @@ namespace Core.Domain.CommandHandlers
 
         public Task SendCommand<T>(T comando, CancellationToken cancellation = default, bool enqueue = false) where T : Command
         {
-            // if (enqueue)
-            //     return PublicarFila(comando, cancellation);
-            return _mediator.Send(comando, cancellation);
+            if (enqueue)
+                return PublicarFila(comando, cancellation);
+            else
+                return _mediator.Send(comando, cancellation);
         }
 
         public Task RaiseEvent<T>(T evento, CancellationToken cancellation = default, bool enqueue = false) where T : Event => _mediator.Publish(evento, cancellation);
@@ -63,59 +64,6 @@ namespace Core.Domain.CommandHandlers
             }
 
             return Task.CompletedTask;
-        }
-
-        public async Task SubscreverFilas()
-        {
-            using (var connection = _connectionFactory.CreateConnection())
-            {
-                using (var channel = connection.CreateModel())
-                {
-                    foreach (var queueType in _queueableService.Comandos)
-                    {
-                        channel.QueueDeclare(queue: queueType.FullName,
-                                             durable: true,
-                                             exclusive: false,
-                                             autoDelete: false,
-                                             arguments: null);
-                    }
-
-                    var consumer = new EventingBasicConsumer(channel);
-                    consumer.Received += async (model, eventArgs) =>
-                    {
-                        var bodyMessage = eventArgs.Body;
-                        var comando = JsonConvert.DeserializeObject(Encoding.UTF8.GetString(bodyMessage), _queueableService.Comandos.Find(t => t.FullName == eventArgs.RoutingKey));
-                        Console.WriteLine($"Mensagem do tipo {comando.GetType().FullName} recebida.");
-
-                        using (var scope = _host.Services.CreateScope())
-                        {
-                            var services = scope.ServiceProvider;
-                            var mediator = services.GetRequiredService<IMediator>();
-                            Thread.Sleep(30000);
-
-                            try
-                            {
-                                await mediator.Send((Command)comando);
-                                channel.BasicAck(eventArgs.DeliveryTag, false);
-                            }
-
-                            catch
-                            {
-                                channel.BasicNack(eventArgs.DeliveryTag, false, true);
-                            }
-                        }
-                    };
-
-                    foreach (var queueType in _queueableService.Comandos)
-                    {
-                        channel.BasicConsume(queueType.FullName,
-                                         autoAck: false,
-                                         consumer: consumer);
-                    }
-
-                    Console.ReadLine();
-                }
-            }
         }
     }
 }
