@@ -52,6 +52,12 @@ Este não é um projeto para ser utilizado em produção. Ele é apenas uma demo
 
 * **Alexandre Beato** - *Desenvolvedor* - [GitHub](https://github.com/alexandrebeato)
 
+## Roadmap 🗺
+|Item|Data|
+|---|---|
+|Testes|TBD|
+|Aplicativo Mobile (Flutter)|TBD|
+
 ## License 📃
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
