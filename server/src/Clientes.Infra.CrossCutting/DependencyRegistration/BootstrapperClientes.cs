@@ -9,7 +9,7 @@ using Clientes.Infra.Data.Mongo.Repository;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Clientes.Infra.CrossCutting.IoC
+namespace Clientes.Infra.CrossCutting.DependencyRegistration
 {
     public static class BootstrapperClientes
     {

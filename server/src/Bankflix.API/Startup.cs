@@ -1,9 +1,9 @@
-using Agencia.Infra.CrossCutting.IoC;
+using Agencia.Infra.CrossCutting.DependencyRegistration;
 using AutoMapper;
 using Bankflix.API.Configurations;
 using Bankflix.API.Mapper;
 using Bankflix.API.Models;
-using Clientes.Infra.CrossCutting.IoC;
+using Clientes.Infra.CrossCutting.DependencyRegistration;
 using Core.Domain.CommandHandlers;
 using Core.Domain.Interfaces;
 using Core.Domain.Notifications;
@@ -17,7 +17,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Movimentacoes.Infra.CrossCutting.IoC;
+using Movimentacoes.Infra.CrossCutting.DependencyRegistration;
 
 namespace Bankflix.API
 {

@@ -17,7 +17,7 @@ using Movimentacoes.Infra.Data.Mongo.Repository;
 using System;
 using System.Collections.Generic;
 
-namespace Movimentacoes.Infra.CrossCutting.IoC
+namespace Movimentacoes.Infra.CrossCutting.DependencyRegistration
 {
     public class BootstrapperMovimentacoes
     {

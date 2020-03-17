@@ -2,7 +2,7 @@
 using Agencia.Infra.Data.Mongo.Repository;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Agencia.Infra.CrossCutting.IoC
+namespace Agencia.Infra.CrossCutting.DependencyRegistration
 {
     public static class BootstrapperAgencia
     {

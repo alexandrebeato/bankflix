@@ -1,7 +1,7 @@
 ﻿using Core.Domain.Interfaces;
 using Core.Domain.Services;
 using Microsoft.Extensions.DependencyInjection;
-using Movimentacoes.Infra.CrossCutting.IoC;
+using Movimentacoes.Infra.CrossCutting.DependencyRegistration;
 using System;
 using System.Collections.Generic;
 
