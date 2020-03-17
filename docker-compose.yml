@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   bankflix-client:
-    build: clients\angular
+    build: clients/angular
     container_name: bankflix-client
     depends_on:
       - bankflix-api
