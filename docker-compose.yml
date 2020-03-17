@@ -1,9 +1,8 @@
 version: '3.7'
 
 services:
-  bankflix-client:
+  client:
     build: clients/angular
-    container_name: bankflix-client
     depends_on:
       - bankflix-api
     ports:
@@ -11,9 +10,8 @@ services:
     networks:
       - bankflix
 
-  bankflix-api:
+  api:
     build: server
-    container_name: bankflix-api
     depends_on:
       - mongo
       - rabbitmq
@@ -21,10 +19,12 @@ services:
     - 5002:80
     networks:
       - bankflix
+    environment:
+      - "mongoConnection__server=mongodb://mongo:27017/bankflix"
+      - "rabbitmq__uri=amqp://guest:guest@rabbitmq:5672/rabbitmq-bankflix"
 
   mongo:
     image: mongo:latest
-    container_name: mongo
     ports:
     - 27018:27017
     networks:
@@ -32,7 +32,6 @@ services:
 
   rabbitmq:
     image: rabbitmq:3-management
-    container_name: rabbitmq
     ports:
     - 5673:5672
     - 15673:15672

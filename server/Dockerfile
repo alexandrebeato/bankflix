@@ -2,8 +2,8 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS base
 WORKDIR /app
 EXPOSE 80
 
-ENV mongoConnection__server ""
-ENV rabbitmq__uri ""
+ENV mongoConnection__server
+ENV rabbitmq__uri
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build
 WORKDIR /src
