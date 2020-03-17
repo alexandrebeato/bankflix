@@ -7,7 +7,7 @@ services:
     depends_on:
       - bankflix-api
     ports:
-      - 1818:80
+      - 5001:80
     networks:
       - bankflix
 
@@ -18,7 +18,7 @@ services:
       - mongo
       - rabbitmq
     ports:
-    - 1717:80
+    - 5002:80
     networks:
       - bankflix
 
@@ -26,7 +26,7 @@ services:
     image: mongo:latest
     container_name: mongo
     ports:
-    - 27017:27017
+    - 27018:27017
     networks:
       - bankflix
 
@@ -34,8 +34,8 @@ services:
     image: rabbitmq:3-management
     container_name: rabbitmq
     ports:
-    - 5672:5672
-    - 15672:15672
+    - 5673:5672
+    - 15673:15672
     networks:
       - bankflix
     environment:

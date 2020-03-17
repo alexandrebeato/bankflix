@@ -13,7 +13,7 @@ cd bankflix
 docker-compose up --build -d
 ```
 
-A aplicação angular (front-end) poderá ser acessada através do endpoint `http://localhost:1818/` e a api (back-end) pode ser acessada via endpoint `http://localhost:1717/`.
+A aplicação angular (front-end) poderá ser acessada através do endpoint `http://localhost:5001/` e a api (back-end) pode ser acessada via endpoint `http://localhost:5002/`.
 
 ## Sobre
 O projeto **Bankflix** simula um banco digital, contendo a área do cliente e administrativa, permitindo depósitos e transferências entre contas do mesmo banco..
