@@ -4,6 +4,9 @@
 
 [![Build status](https://dev.azure.com/alexandrebeato-com/Bankflix/_apis/build/status/Bankflix-CI)](https://dev.azure.com/alexandrebeato-com/Bankflix/_build/latest?definitionId=9)
 
+## Demonstração
+[Clique aqui](http://78.47.200.77:5001/) para acessar a demo.
+
 ## Começando
 Para executar a aplicação:
 
