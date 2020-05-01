@@ -50,7 +50,7 @@ Este não é um projeto para ser utilizado em produção. Ele é apenas uma demo
 
 ## Autor 👦
 
-* **Alexandre Beato** - *Desenvolvedor* - [GitHub](https://github.com/alexandrebeato)
+* **Alexandre Beato** - *Desenvolvedor* - [GitHub](https://github.com/alexandrebeato) - [Linkedin](https://www.linkedin.com/in/alexandrebeato)
 
 ## Roadmap 🗺
 |Item|Data|
