@@ -6,44 +6,56 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                width: double.infinity,
-                alignment: Alignment(0, 0),
-                child: Image.asset(
-                  "assets/images/logo.png",
-                  height: 60,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/background.jpg"),
+            fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(
+              Theme.of(context).primaryColor,
+              BlendMode.hardLight,
+            ),
+          ),
+        ),
+        child: Container(
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  margin: EdgeInsets.only(bottom: 30),
+                  width: double.infinity,
+                  alignment: Alignment(0, 1),
+                  child: Image.asset(
+                    "assets/images/logo.png",
+                    height: 60,
+                  ),
                 ),
               ),
-            ),
-            Container(
-              height: 200,
-              padding: EdgeInsets.only(left: 30, right: 30),
-              child: Column(
-                children: <Widget>[
-                  roundedButton(
-                    context,
-                    "Já sou cliente",
-                    Color(0xFF4A1942),
-                    LoginPage(),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  roundedButton(
-                    context,
-                    "Quero ser cliente",
-                    Color(0xFF4A1942),
-                    CadastroPage(),
-                  ),
-                ],
+              Container(
+                height: 200,
+                padding: EdgeInsets.only(left: 30, right: 30),
+                child: Column(
+                  children: <Widget>[
+                    roundedButton(
+                      context,
+                      "Já sou cliente",
+                      Theme.of(context).primaryColor,
+                      LoginPage(),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    roundedButton(
+                      context,
+                      "Quero ser cliente",
+                      Theme.of(context).primaryColor,
+                      CadastroPage(),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
