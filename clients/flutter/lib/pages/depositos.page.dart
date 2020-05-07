@@ -25,7 +25,7 @@ class DepositosPage extends StatelessWidget {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  labelText: "Quantidade (R\$)",
+                  labelText: "Valor para depositar (R\$)",
                 ),
               ),
               SizedBox(

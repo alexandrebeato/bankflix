@@ -38,13 +38,23 @@ class DashboardPage extends StatelessWidget {
                         color: Theme.of(context).accentColor,
                       ),
                     ),
-                    Text(
-                      "R\$ 1998,09",
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "R\$ 1998,09",
+                          style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(Icons.remove_red_eye),
+                          color: Theme.of(context).accentColor,
+                        )
+                      ],
                     ),
                   ],
                 ),
