@@ -1,3 +1,5 @@
+import 'package:bankflix/pages/depositos.page.dart';
+import 'package:bankflix/pages/transferencias.page.dart';
 import 'package:flutter/material.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -6,6 +8,7 @@ class DashboardPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        title: Text("Olá, Alexandre"),
         elevation: 0,
         actions: <Widget>[
           IconButton(
@@ -77,12 +80,14 @@ class DashboardPage extends StatelessWidget {
                                     context,
                                     "Transferências",
                                     "Transferir dinheiro para outras contas",
-                                    "assets/images/transfer-money.png"),
+                                    "assets/images/transfer-money.png",
+                                    paginaParaAbrir: TransferenciasPage()),
                                 operacaoItemCard(
                                     context,
                                     "Depósitos",
                                     "Depositar dinheiro na sua conta",
-                                    "assets/images/deposit.png"),
+                                    "assets/images/deposit.png",
+                                    paginaParaAbrir: DepositosPage()),
                                 operacaoItemCard(
                                     context,
                                     "Suporte",
@@ -90,6 +95,32 @@ class DashboardPage extends StatelessWidget {
                                     "assets/images/support.png"),
                               ],
                             ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            "Dados da conta",
+                            style: Theme.of(context).textTheme.title,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          ListTile(
+                            title: Text("Número"),
+                            trailing: Text("0000000001-7"),
+                          ),
+                          ListTile(
+                            title: Text("CPF"),
+                            trailing: Text("719.585.510-40"),
+                          ),
+                          ListTile(
+                            title: Text("Agência"),
+                            trailing: Text("333"),
+                          ),
+                          ListTile(
+                            title: Text("Agência"),
+                            trailing: Text("0001"),
                           ),
                         ],
                       ),
@@ -105,46 +136,59 @@ class DashboardPage extends StatelessWidget {
   }
 
   Widget operacaoItemCard(
-      BuildContext context, String titulo, String descricao, String imagem) {
-    return Container(
-      width: 180,
-      padding: EdgeInsets.all(5),
-      margin: EdgeInsets.symmetric(horizontal: 7),
-      decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor,
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Image.asset(
-            imagem,
-            width: 60,
-          ),
-          SizedBox(
-            height: 25,
-          ),
-          Text(
-            titulo,
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w500,
-              color: Theme.of(context).accentColor,
+      BuildContext context, String titulo, String descricao, String imagem,
+      {Widget paginaParaAbrir}) {
+    return GestureDetector(
+      onTap: () {
+        if (paginaParaAbrir != null) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => paginaParaAbrir,
             ),
-          ),
-          SizedBox(
-            height: 7,
-          ),
-          Text(
-            descricao,
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w400,
-              color: Theme.of(context).accentColor,
+          );
+        }
+      },
+      child: Container(
+        width: 180,
+        padding: EdgeInsets.all(5),
+        margin: EdgeInsets.symmetric(horizontal: 7),
+        decoration: BoxDecoration(
+          color: Theme.of(context).primaryColor,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(
+              imagem,
+              width: 60,
             ),
-            textAlign: TextAlign.center,
-          ),
-        ],
+            SizedBox(
+              height: 25,
+            ),
+            Text(
+              titulo,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                color: Theme.of(context).accentColor,
+              ),
+            ),
+            SizedBox(
+              height: 7,
+            ),
+            Text(
+              descricao,
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w400,
+                color: Theme.of(context).accentColor,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       ),
     );
   }
