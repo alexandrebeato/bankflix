@@ -1,3 +1,4 @@
+import 'package:bankflix/pages/dashboard.page.dart';
 import 'package:bankflix/pages/home.page.dart';
 import 'package:bankflix/themes/light.theme.dart';
 import 'package:flutter/material.dart';
