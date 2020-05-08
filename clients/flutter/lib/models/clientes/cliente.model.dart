@@ -2,12 +2,12 @@ class Cliente {
   String id;
   String nomeCompleto;
   String cpf;
-  DateTime dataNascimento;
+  String dataNascimento;
   String email;
   String telefone;
   String senha;
   int situacao;
-  DateTime dataHoraCriacao;
+  String dataHoraCriacao;
 
   Cliente(
       {this.id,

@@ -1,7 +1,7 @@
 class CadastrarCliente {
   String nomeCompleto;
   String cpf;
-  DateTime dataNascimento;
+  String dataNascimento;
   String email;
   String telefone;
   String senha;

@@ -1,10 +1,14 @@
+import 'package:bankflix/controllers/cliente.controller.dart';
 import 'package:bankflix/pages/depositos.page.dart';
 import 'package:bankflix/pages/transferencias.page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final clienteController = Provider.of<ClienteController>(context);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -13,7 +17,9 @@ class DashboardPage extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.exit_to_app),
-            onPressed: () {},
+            onPressed: () {
+              clienteController.sair();
+            },
           )
         ],
       ),
