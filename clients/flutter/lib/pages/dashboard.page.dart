@@ -66,8 +66,10 @@ class DashboardPage extends StatelessWidget {
                           },
                         ),
                         IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.remove_red_eye),
+                          onPressed: () {
+                            dashboardController.obterMinhaConta();
+                          },
+                          icon: Icon(Icons.refresh),
                           color: Theme.of(context).accentColor,
                         )
                       ],

@@ -1,11 +1,13 @@
+import 'package:bankflix/enums/situacao-deposito.enum.dart';
+
 class Deposito {
   String id;
   Conta conta;
-  int valor;
+  num valor;
   int situacao;
   String motivoCancelamento;
-  DateTime dataHoraCriacao;
-  double valorEmReais;
+  String dataHoraCriacao;
+  num valorEmReais;
 
   Deposito(
       {this.id,
@@ -38,6 +40,19 @@ class Deposito {
     data['dataHoraCriacao'] = this.dataHoraCriacao;
     data['valorEmReais'] = this.valorEmReais;
     return data;
+  }
+
+  SituacaoDeposito obterSituacaoDeposito() {
+    switch (this.situacao) {
+      case 1:
+        return SituacaoDeposito.Pendente;
+      case 2:
+        return SituacaoDeposito.Efetuado;
+      case 3:
+        return SituacaoDeposito.Cancelado;
+      default:
+        throw ("Nenhuma opção encontrada.");
+    }
   }
 }
 

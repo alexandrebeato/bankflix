@@ -168,7 +168,6 @@ class CadastroPage extends StatelessWidget {
         labelStyle: TextStyle(
           color: Theme.of(context).accentColor,
         ),
-        hasFloatingPlaceholder: true,
       ),
       onChanged: onChanged,
       textInputAction: TextInputAction.done,
