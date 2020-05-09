@@ -12,6 +12,8 @@ class CadastroPage extends StatelessWidget {
     var cadastrarClienteController =
         Provider.of<CadastrarClienteController>(context);
 
+    cadastrarClienteController.limparModel();
+
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: Theme.of(context).primaryColor,

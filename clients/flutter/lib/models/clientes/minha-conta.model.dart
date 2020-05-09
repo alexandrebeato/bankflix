@@ -3,9 +3,9 @@ class MinhaConta {
   String clienteId;
   String numero;
   String digitoVerificador;
-  int saldoDisponivel;
-  DateTime dataHoraCriacao;
-  double saldoDisponivelEmReais;
+  num saldoDisponivel;
+  String dataHoraCriacao;
+  num saldoDisponivelEmReais;
 
   MinhaConta(
       {this.id,

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:bankflix/models/clientes/cadastrar-cliente.model.dart';
 import 'package:bankflix/models/clientes/cliente-autenticado.model.dart';
 import 'package:bankflix/models/clientes/cliente-login.model.dart';
@@ -15,7 +13,7 @@ class ClienteRepository extends Repository {
     return ClienteAutenticado.fromJson(response.data);
   }
 
-  Future<ClienteAutenticado> login(ClienteLogin cliente) async {
+  Future<ClienteAutenticado> entrar(ClienteLogin cliente) async {
     var url = "${Settings.apiUrl}clientes/login";
     var response = await Dio().post(url, data: cliente);
     return ClienteAutenticado.fromJson(response.data);

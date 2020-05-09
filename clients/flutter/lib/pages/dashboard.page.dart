@@ -1,24 +1,30 @@
 import 'package:bankflix/controllers/cliente.controller.dart';
+import 'package:bankflix/controllers/dashboard.controller.dart';
 import 'package:bankflix/pages/depositos.page.dart';
 import 'package:bankflix/pages/transferencias.page.dart';
+import 'package:bankflix/settings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final clienteController = Provider.of<ClienteController>(context);
+    final dashboardController = Provider.of<DashboardController>(context);
+    dashboardController.obterMinhaConta();
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: Text("Olá, Alexandre"),
+        title: Text(obterSaudacao(Settings.cliente.nomeCompleto)),
         elevation: 0,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.exit_to_app),
-            onPressed: () {
-              clienteController.sair();
+            onPressed: () async {
+              await clienteController.sair();
             },
           )
         ],
@@ -47,13 +53,17 @@ class DashboardPage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text(
-                          "R\$ 1998,09",
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
+                        Observer(
+                          builder: (_) {
+                            return Text(
+                              "R\$ ${formatarValor(dashboardController.saldo)}",
+                              style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            );
+                          },
                         ),
                         IconButton(
                           onPressed: () {},
@@ -117,18 +127,23 @@ class DashboardPage extends StatelessWidget {
                           ),
                           Text(
                             "Dados da conta",
-                            style: Theme.of(context).textTheme.title,
+                            style: Theme.of(context).textTheme.headline6,
                           ),
                           SizedBox(
                             height: 10,
                           ),
                           ListTile(
                             title: Text("Número"),
-                            trailing: Text("0000000001-7"),
+                            trailing: Observer(
+                              builder: (_) {
+                                return Text(
+                                    dashboardController.numeroContaComDigito);
+                              },
+                            ),
                           ),
                           ListTile(
                             title: Text("CPF"),
-                            trailing: Text("719.585.510-40"),
+                            trailing: Text(Settings.cliente.cpf),
                           ),
                           ListTile(
                             title: Text("Agência"),
@@ -207,5 +222,17 @@ class DashboardPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String obterSaudacao(String nomeCompleto) {
+    var nomes = nomeCompleto.split(" ");
+    return "Olá, ${nomes[0]}";
+  }
+
+  String formatarValor(double valor) {
+    if (valor == null) return "0,00";
+
+    var numberFormat = NumberFormat('#0.00', 'pt_BR');
+    return numberFormat.format(valor);
   }
 }

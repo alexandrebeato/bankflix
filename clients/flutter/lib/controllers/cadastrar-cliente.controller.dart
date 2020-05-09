@@ -61,6 +61,9 @@ abstract class _CadastrarClienteControllerBase with Store {
     model = model;
   }
 
+  @action
+  limparModel() => model = CadastrarCliente();
+
   bool validar() {
     if (StringUtils.isNullOrEmpty(model.nomeCompleto) ||
         StringUtils.isNullOrEmpty(model.cpf) ||

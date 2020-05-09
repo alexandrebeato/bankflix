@@ -26,32 +26,56 @@ mixin _$ClienteController on _ClienteController, Store {
     }, _$clienteAtom, name: '${_$clienteAtom.name}_set');
   }
 
-  final _$_ClienteControllerActionController =
-      ActionController(name: '_ClienteController');
+  final _$tokenAtom = Atom(name: '_ClienteController.token');
 
   @override
-  dynamic carregarClienteAutenticado() {
-    final _$actionInfo = _$_ClienteControllerActionController.startAction();
-    try {
-      return super.carregarClienteAutenticado();
-    } finally {
-      _$_ClienteControllerActionController.endAction(_$actionInfo);
-    }
+  String get token {
+    _$tokenAtom.context.enforceReadPolicy(_$tokenAtom);
+    _$tokenAtom.reportObserved();
+    return super.token;
   }
 
   @override
-  dynamic sair() {
-    final _$actionInfo = _$_ClienteControllerActionController.startAction();
-    try {
-      return super.sair();
-    } finally {
-      _$_ClienteControllerActionController.endAction(_$actionInfo);
-    }
+  set token(String value) {
+    _$tokenAtom.context.conditionallyRunInAction(() {
+      super.token = value;
+      _$tokenAtom.reportChanged();
+    }, _$tokenAtom, name: '${_$tokenAtom.name}_set');
+  }
+
+  final _$carregarClienteAutenticadoAsyncAction =
+      AsyncAction('carregarClienteAutenticado');
+
+  @override
+  Future carregarClienteAutenticado() {
+    return _$carregarClienteAutenticadoAsyncAction
+        .run(() => super.carregarClienteAutenticado());
+  }
+
+  final _$definirClienteAsyncAction = AsyncAction('definirCliente');
+
+  @override
+  Future definirCliente(Cliente cliente) {
+    return _$definirClienteAsyncAction.run(() => super.definirCliente(cliente));
+  }
+
+  final _$definirTokenAsyncAction = AsyncAction('definirToken');
+
+  @override
+  Future definirToken(String token) {
+    return _$definirTokenAsyncAction.run(() => super.definirToken(token));
+  }
+
+  final _$sairAsyncAction = AsyncAction('sair');
+
+  @override
+  Future sair() {
+    return _$sairAsyncAction.run(() => super.sair());
   }
 
   @override
   String toString() {
-    final string = 'cliente: ${cliente.toString()}';
+    final string = 'cliente: ${cliente.toString()},token: ${token.toString()}';
     return '{$string}';
   }
 }

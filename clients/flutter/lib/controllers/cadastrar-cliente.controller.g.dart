@@ -121,6 +121,17 @@ mixin _$CadastrarClienteController on _CadastrarClienteControllerBase, Store {
   }
 
   @override
+  dynamic limparModel() {
+    final _$actionInfo =
+        _$_CadastrarClienteControllerBaseActionController.startAction();
+    try {
+      return super.limparModel();
+    } finally {
+      _$_CadastrarClienteControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     final string =
         'model: ${model.toString()},erroResponse: ${erroResponse.toString()}';
