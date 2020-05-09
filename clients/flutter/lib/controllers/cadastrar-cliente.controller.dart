@@ -1,7 +1,7 @@
-import 'package:bankflix/utils/string-extensions.utils.dart';
 import 'package:bankflix/models/clientes/cadastrar-cliente.model.dart';
 import 'package:bankflix/models/erro-response.model.dart';
 import 'package:bankflix/repository/cliente.repository.dart';
+import 'package:bankflix/utils/string.utils.dart';
 import 'package:dio/dio.dart';
 import 'package:mobx/mobx.dart';
 import 'package:intl/intl.dart';
@@ -62,12 +62,12 @@ abstract class _CadastrarClienteControllerBase with Store {
   }
 
   bool validar() {
-    if (model.nomeCompleto.isNullOrEmpty() ||
-        model.cpf.isNullOrEmpty() ||
-        model.email.isNullOrEmpty() ||
-        model.telefone.isNullOrEmpty() ||
-        model.dataNascimento.isNullOrEmpty() ||
-        model.senha.isNullOrEmpty())
+    if (StringUtils.isNullOrEmpty(model.nomeCompleto) ||
+        StringUtils.isNullOrEmpty(model.cpf) ||
+        StringUtils.isNullOrEmpty(model.email) ||
+        StringUtils.isNullOrEmpty(model.telefone) ||
+        StringUtils.isNullOrEmpty(model.dataNascimento) ||
+        StringUtils.isNullOrEmpty(model.senha))
       return false;
     else
       return true;

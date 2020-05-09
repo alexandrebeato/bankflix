@@ -1,4 +1,3 @@
-import 'package:bankflix/models/clientes/cadastrar-cliente.model.dart';
 import 'package:bankflix/models/clientes/cliente.model.dart';
 import 'package:mobx/mobx.dart';
 part 'cliente.controller.g.dart';

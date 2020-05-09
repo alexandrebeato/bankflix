@@ -26,6 +26,31 @@ mixin _$CadastrarClienteController on _CadastrarClienteControllerBase, Store {
     }, _$modelAtom, name: '${_$modelAtom.name}_set');
   }
 
+  final _$erroResponseAtom =
+      Atom(name: '_CadastrarClienteControllerBase.erroResponse');
+
+  @override
+  ErroResponse get erroResponse {
+    _$erroResponseAtom.context.enforceReadPolicy(_$erroResponseAtom);
+    _$erroResponseAtom.reportObserved();
+    return super.erroResponse;
+  }
+
+  @override
+  set erroResponse(ErroResponse value) {
+    _$erroResponseAtom.context.conditionallyRunInAction(() {
+      super.erroResponse = value;
+      _$erroResponseAtom.reportChanged();
+    }, _$erroResponseAtom, name: '${_$erroResponseAtom.name}_set');
+  }
+
+  final _$cadastrarAsyncAction = AsyncAction('cadastrar');
+
+  @override
+  Future<bool> cadastrar() {
+    return _$cadastrarAsyncAction.run(() => super.cadastrar());
+  }
+
   final _$_CadastrarClienteControllerBaseActionController =
       ActionController(name: '_CadastrarClienteControllerBase');
 
@@ -41,8 +66,64 @@ mixin _$CadastrarClienteController on _CadastrarClienteControllerBase, Store {
   }
 
   @override
+  dynamic definirCpf(String cpf) {
+    final _$actionInfo =
+        _$_CadastrarClienteControllerBaseActionController.startAction();
+    try {
+      return super.definirCpf(cpf);
+    } finally {
+      _$_CadastrarClienteControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic definirEmail(String email) {
+    final _$actionInfo =
+        _$_CadastrarClienteControllerBaseActionController.startAction();
+    try {
+      return super.definirEmail(email);
+    } finally {
+      _$_CadastrarClienteControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic definirTelefone(String telefone) {
+    final _$actionInfo =
+        _$_CadastrarClienteControllerBaseActionController.startAction();
+    try {
+      return super.definirTelefone(telefone);
+    } finally {
+      _$_CadastrarClienteControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic definirDataNascimento(String dataNascimento) {
+    final _$actionInfo =
+        _$_CadastrarClienteControllerBaseActionController.startAction();
+    try {
+      return super.definirDataNascimento(dataNascimento);
+    } finally {
+      _$_CadastrarClienteControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic definirSenha(String senha) {
+    final _$actionInfo =
+        _$_CadastrarClienteControllerBaseActionController.startAction();
+    try {
+      return super.definirSenha(senha);
+    } finally {
+      _$_CadastrarClienteControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
-    final string = 'model: ${model.toString()}';
+    final string =
+        'model: ${model.toString()},erroResponse: ${erroResponse.toString()}';
     return '{$string}';
   }
 }
