@@ -56,7 +56,7 @@ Este não é um projeto para ser utilizado em produção. Ele é apenas uma demo
 |Item|Data|
 |---|---|
 |Testes|TBD|
-|Aplicativo Mobile (Flutter)|TBD|
+|Aplicativo Mobile (Flutter)|✔|
 
 ## License 📃
 
